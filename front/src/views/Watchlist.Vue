@@ -1,15 +1,14 @@
 <template>
   <div>
-      This is the Update Page
+    This is the Watchlist Page
   </div>
 </template>
 
 <script>
 export default {
-    name: "Update"
-}
+  name: "Update"
+};
 </script>
 
 <style>
-
 </style>
