@@ -1,7 +1,7 @@
 <template>
- <span @Click="GoBack" class="back text-dark-purple bg-transperant font-epilogue text-2xl text-extrabold m-20 mt-20 bg-cream"> Back to Home</span> <br>
-<div class="container lg:flex md:flex sm:flex-none bg-cream w-screen h-screen font-epilogue place-items-center">  
-  <div class="logo-area space-y-1 text-dark-purple font-epilogue m-20 w-1/3 text-center text-sm bg-cream  sm:hidden md:block lg:block ">    
+ <span @Click="GoBack" class="go-back text-dark-purple bg-transperant font-epilogue sm:text-lg  lg:text-2xl text-extrabold sm:m-10 lg:m-10  bg-cream sm:px-5 lg:px-10"> Back to Home</span> <br>
+<div class="container lg:flex md:flex sm:flex-none bg-cream w-full h-auto font-epilogue">  
+  <div class="logo-area space-y-1 text-dark-purple font-epilogue m-20 w-1/3 text-center text-sm bg-cream  sm:hidden md:block lg:block place-items-center">    
   <h1 class="main-heading sm:text-xl md:text-3xl lg:text-5xl text-dark-purple text-bold font-epilogue" > Thrift Me</h1>
    <img src="https://picsum.photos/id/1025/300/300" alt="" class="logo sm:ml-10 md:ml-1 lg:ml-1">   
     <p>Create and account to get thrifty with us!</p>
@@ -9,10 +9,10 @@
     <p>and customise your experience</p>
   </div>
 
-  <div class="signup text-center sm:m-10 md:m-10 lg:m-10 bg-cream sm:w-full lgzz;w2/3 block"> 
- <h1 class="title text-dark-purple font-epilogue text-bold sm:text-xl md:text-2xl lg:text-3xl ">Sign Up</h1><br>
-    <p class="subtitle text-dark-purple font-epilogue  text-sm">Already a ThriftMe user? Sign in here</p><br>
-    <form class="signup-form text-dark-purple sm:space-y-1 md:space-y-2 lg:space-y-2 text-sm  bg- text-center sm:ml-10 md:ml10 lg:ml-10" name="signup-form">
+  <div class="signup text-center xsm:m-0 md:m-5 lg:m-10 bg-cream xsm:w-full sm:w-full lg;w2/3 block"> 
+ <h1 class="title text-dark-purple font-epilogue text-bold sm:text-xl md:text-2xl lg:text-3xl text-center ">Sign Up</h1><br>
+    <span @click="GoLogin" class="subtitle text-dark-purple font-epilogue  text-sm text-center">Already a ThriftMe user? Sign in here</span><br><br>
+    <form class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center" name="signup-form">
       <input type="text" class="fname bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="fname" v-model="fname" placeholder="FIRST NAME"  required="true"><br>
        <span class="error text-red-600 test-sm" v-if="msg.fname">{{msg.fname}}</span><br>
       <input  type="text" class="lname bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="lname" v-model="lname" placeholder="LAST NAME"  required="true"><br>
@@ -27,7 +27,7 @@
        <span class="error text-red-600 text-sm" v-if ="msg.repeatpass">{{msg.repeatpass}}</span><br>
       <input type="checkbox"  name="agree"> I agree to the terms and conditions of use      
     </form><br>
-    <button class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream ">Create Account</button><br>
+    <button class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Create Account</button><br>
     </div>    
 </div>
 <footer class="footer sm:h-0 md:h-10 lg:h-10 bg-bright-purple "></footer>
@@ -36,6 +36,7 @@
 <script>
 
 import HomeVue from './Home.vue'
+import LoginVue from './Login.vue';
 
 export default {
     name: "CreateAccount",
@@ -147,6 +148,10 @@ export default {
         },
          GoBack(){
         return this.$router.push(HomeVue)
+      },
+
+      GoLogin(){
+        return this.$router.push(LoginVue)
       }
      },   
       
