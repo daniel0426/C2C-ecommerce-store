@@ -10,7 +10,7 @@ const PostSchema = mongoose.Schema({
         required: true
     },
     condition: {
-        type:[],
+        type: String,
         required:true
     },
     size : {
@@ -18,15 +18,15 @@ const PostSchema = mongoose.Schema({
         required:true
     },
     location : {
-        type:[],
+        type: String,
         required:true
     },
     paymentType : {
-        type: [],
+        type: String,
         required: true
     },
     shippingOption : {
-        type: [],
+        type: String,
         required : true
     },
 },{timestamps : true})
