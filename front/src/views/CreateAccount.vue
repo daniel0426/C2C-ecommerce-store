@@ -3,7 +3,7 @@
 <div class="container lg:flex md:flex sm:flex-none bg-cream w-screen h-screen font-epilogue place-items-center">  
   <div class="logo-area space-y-1 text-dark-purple font-epilogue m-20 w-1/3 text-center text-sm bg-cream  sm:hidden md:block lg:block ">    
   <h1 class="main-heading sm:text-xl md:text-3xl lg:text-5xl text-dark-purple text-bold font-epilogue" > Thrift Me</h1>
-   <img src="https://picsum.photos/id/1025/300/300" alt="" class="logo sm:ml-10 md:ml-10 lg:ml-10">   
+   <img src="https://picsum.photos/id/1025/300/300" alt="" class="logo sm:ml-10 md:ml-1 lg:ml-1">   
     <p>Create and account to get thrifty with us!</p>
     <p>Access our full range of features, list your items</p> 
     <p>and customise your experience</p>
