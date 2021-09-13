@@ -16,6 +16,17 @@ module.exports = {
         'light-purple': '#a695b4',
         'cream': '#f7f7f6'
       },
+
+      screens: {
+        'sm': '250px',
+        // => @media (min-width: 640px) { ... }
+  
+        'md': '768px',
+        // => @media (min-width: 768px) { ... }
+  
+        'lg': '1024px',
+        // => @media (min-width: 1024px) { ... }
+      },
     },
   },
   variants: {
