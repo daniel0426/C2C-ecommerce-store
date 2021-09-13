@@ -56,6 +56,7 @@ app.post("/posts", async (req, res, next) => {
       title: req.body.title,
       price: req.body.price,
       condition: req.body.condition,
+      imgURL : req.body.imgURL,
       size: req.body.size,
       location: req.body.location,
       paymentType: req.body.paymentType,

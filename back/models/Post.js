@@ -9,6 +9,10 @@ const PostSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    imgURL : {
+        type:String,
+        required:true
+    },
     condition: {
         type: String,
         required:true
