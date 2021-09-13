@@ -15,3 +15,17 @@ mongoose.connect(
         console.log("listening on port 4000")
     })
 })
+
+app.post('/posts', async (req, res)=> {
+    const post = new Post({
+        title: req.body.title,
+        price: req.body.post,
+        condition: req.body.condition,
+        size:req.body.size,
+        location: req.body.location,
+        paymentType: req.body.paymentType,
+        shippingOption : req.body.shippingOption
+    });
+    const savedPost = await post.save();
+    res.json(savedPost);
+})
