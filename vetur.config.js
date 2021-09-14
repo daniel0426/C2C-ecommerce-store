@@ -1,7 +1,7 @@
 module.exports = {
     settings: {
-      "vetur.useWorkspaceDependencies": true,
-      "vetur.experimental.templateInterpolationService": true
+      "vetur.useWorkspaceDependencies": false,
+      "vetur.experimental.templateInterpolationService": false
     },
     projects: [
       './front'
