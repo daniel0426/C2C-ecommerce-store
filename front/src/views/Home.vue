@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="w-full">
     <img alt="Vue logo" src="../assets/logo.png" />
 
     <div class="flex flex-col">
@@ -20,7 +20,6 @@
         md:gap-12
         grid-cols-1
         md:grid-cols-2
-        max-w-4xl
         mx-auto
         pb-10
       "
