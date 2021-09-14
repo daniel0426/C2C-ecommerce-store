@@ -13,7 +13,7 @@
  <h1 class="title text-dark-purple font-epilogue text-bold sm:text-xl md:text-2xl lg:text-3xl text-center ">Sign Up</h1><br>
     <span @click="GoLogin" class="subtitle text-dark-purple font-epilogue  text-xs text-center">Already a ThriftMe user? <b><u>Sign in here</u></b></span><br><br>
     <form submit.prevent="CreateAccount" class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center" name="signup-form">
-       <input type="text" class="username bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="username" v-model="account.username" placeholder="USERNAME"  required="true"><br><br>
+       
       <input type="text" class="fname bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="fname" v-model="account.fname" placeholder="FIRST NAME"  required="true"><br>
        <span class="error text-red-600 test-sm" v-if="msg.fname">{{msg.fname}}</span><br>
       <input  type="text" class="lname bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="lname" v-model="account.lname" placeholder="LAST NAME"  required="true"><br>
@@ -48,7 +48,6 @@ export default {
     data(){
       return {
         account:{
-          username: null,
           fname: null,
           lname: null,
           dateofbirth:null,

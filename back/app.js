@@ -85,7 +85,7 @@ app.post('/account/create', async (req, res) => {
       } 
       else {
         const account  = new Account({
-          username: req.body.username,
+          
           fname: req.body.fname,
           lname: req.body.lname,
           dateofbirth: req.body.dateofbirth,
