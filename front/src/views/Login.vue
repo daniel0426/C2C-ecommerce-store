@@ -12,13 +12,14 @@
 <h1 class="main-heading sm:text-xl md:text-3xl lg:text-4xl text-dark-purple text-bold font-epilogue">Login</h1><br>
 <p>If you are an existing user, enter your login below</p>
 <p>to enjoy the full Thriftme experience</p>
-<form class="login-form text-center  space-y-5 m-5" name="login">
-    <input class="login-email bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="text" name="login-email" vmodel="email" placeholder="Enter your email"/><br>
-    <input class="login-password bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="password" name="login-password" vmodel="password" placeholder="Enter your password"/>
-  </form>
+<form @submit.prevent class="login-form text-center  space-y-5 m-5" name="login">
+    <input class="login-email bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="text" name="login-email" vmodel="login-email" placeholder="Enter your email"/><br>
+    <input class="login-password bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="password" name="login-password" vmodel="login-password" placeholder="Enter your password"/><br>
+    <button type="submit" class="login-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Login</button><br><br>
+  </form><br>
   <span>Forgot your login details?</span><br><br>
 
-  <button class="login-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Login</button><br><br>
+  
   <span @click="GoSignup" class="signup-link md:hidden lg:hidden">New to Thriftme <b><u>Create Account Here</u></b></span><br>
 </div>
  </div>
@@ -38,6 +39,10 @@ export default {
 
       GoSignup(){
          return this.$router.push(CreateAccountVue);
+      },
+
+      Login(){
+        
       }
 }
 }
