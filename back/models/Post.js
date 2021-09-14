@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 
+const CommentSchema = mongoose.Schema({
+    author: {type: String, required:true},
+    text: {type: String, required:true}
+},{timestamps : true} )
+
 const PostSchema = mongoose.Schema({
     title : {
         type: String,
@@ -33,6 +38,7 @@ const PostSchema = mongoose.Schema({
         type: String,
         required : true
     },
+    comments: [CommentSchema]
 },{timestamps : true})
 
 const Post = mongoose.model('Post', PostSchema);
