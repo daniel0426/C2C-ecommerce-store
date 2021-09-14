@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Post = require("./models/Post");
+const bcrypt = require("bcrypt");
 
 const app = express();
 
@@ -68,3 +69,33 @@ app.post("/posts", async (req, res, next) => {
     next(err);
   }
 });
+
+//Account endpoints
+const Account = require("./models/Account");
+
+app.post('/account/create', async (req, res) => {
+  const existingAccount = await Account.findOne({email: req.body.email});
+  if (existingAccount) {
+    return res.status(409).json({message:"Email Already Exists"});
+  }   
+  else {
+    bcrypt.hash(req.body.password, 10, async (err, hash) => {
+      if (err) {
+        return res.status(5500).json({error:err});
+      } 
+      else {
+        const account  = new Account({
+          username: req.body.username,
+          fname: req.body.fname,
+          lname: req.body.lname,
+          dateofbirth: req.body.dateofbirth,
+          email: req.body.email,
+          password: hash,
+        });
+        const savedAccount = await account.save();
+        res.json(savedAccount);
+      }
+    });
+  }
+});
+   
