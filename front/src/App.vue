@@ -1,27 +1,23 @@
 <template>
-  <div>
-    <NavBar/>
+  <div class="flex flex-col w-screen">
+    <NavBar />
 
-    <router-view/>
-
+    <div class="max-w-4xl mx-auto border border-red-500">
+      <router-view />
+    </div>
   </div>
-
 </template>
 
 <script>
-
-import NavBar from './components/NavBar.vue'
+import NavBar from "./components/NavBar.vue";
 
 export default {
-  components:{
+  components: {
     NavBar
   }
-  
-}
+};
 </script>
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap");
 </style>

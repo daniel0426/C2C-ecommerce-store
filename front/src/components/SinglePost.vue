@@ -1,5 +1,6 @@
 <template>
-  <div
+  <router-link
+    :to="{ name: 'PostDetail', params: { postId: post._id } }"
     class="
       rounded-md
       shadow-lg
@@ -51,13 +52,17 @@
         </h3>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
 export default {
+  name: "SinglePost",
   props: {
     post: Object
+  },
+  mounted() {
+    console.log(this.post._id);
   }
 };
 </script>

@@ -1,15 +1,14 @@
 <template>
   <div>
-      This is the Update page
+    <h2>This is the commenting interface</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Detail"
-}
+  name: "Commenting"
+};
 </script>
 
 <style>
-
 </style>
