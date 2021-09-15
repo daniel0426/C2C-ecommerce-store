@@ -13,8 +13,8 @@
 <p>If you are an existing user, enter your login below</p>
 <p>to enjoy the full Thriftme experience</p>
 <form @submit.prevent class="login-form text-center  space-y-5 m-5" name="login">
-    <input class="login-email bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="text" name="login-email" vmodel="login-email" placeholder="Enter your email"/><br>
-    <input class="login-password bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="password" name="login-password" vmodel="login-password" placeholder="Enter your password"/><br>
+    <input class="login-email bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="text" name="login-email" v-model="loginemail" placeholder="Enter your email"/><br>
+    <input class="login-password bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="password" name="login-password" v-model="loginpassword" placeholder="Enter your password"/><br>
     <button type="submit" class="login-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Login</button><br><br>
   </form><br>
   <span>Forgot your login details?</span><br><br>
@@ -31,6 +31,16 @@ import CreateAccountVue from './CreateAccount.vue'
 import HomeVue from './Home.vue'
 export default {
     name: "Login",
+
+     data(){
+      return {
+        login:{
+          loginemail: null,
+          loginpassword: null
+        }
+      }
+     },
+    
 
     methods:{
          GoBack(){
