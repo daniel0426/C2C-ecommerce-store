@@ -1,7 +1,8 @@
 <template>
   <div class="flex flex-col w-screen">
     <NavBar />
-    <div class="">
+
+    <div class="max-w-4xl w-full mx-auto">
       <router-view />
     </div>
   </div>
