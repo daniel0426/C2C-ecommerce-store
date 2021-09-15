@@ -1,7 +1,5 @@
 <template>
-  <div class="w-full">
-    <img alt="Vue logo" src="../assets/logo.png" />
-
+  <div class="">
     <div class="flex flex-col">
       <router-link to="/CreateAccount">Create Account </router-link>
       <router-link to="/CreateListing"> Create Listing </router-link>
@@ -17,9 +15,10 @@
       class="
         grid
         gap-6
-        md:gap-12
+        md:gap-8
         grid-cols-1
-        md:grid-cols-2
+        sm:grid-cols-2
+        md:grid-cols-3
         mx-auto
         pb-10
       "

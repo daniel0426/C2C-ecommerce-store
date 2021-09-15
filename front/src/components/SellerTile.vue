@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-96 border-2 border-opacity-30 border-dark-purple rounded-xl px-4 my-2 flex flex-row"
+    class="w-96 border-2 border-opacity-30 border-dark-purple rounded-xl px-4 flex flex-row"
   >
     <div class="flex flex-col w-1/3 align-middle">
       <svg

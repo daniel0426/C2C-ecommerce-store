@@ -1,12 +1,16 @@
 <template>
-  <div class="w-full flex flex-col">
-    <div class="my-4 flex sm:flex-wrap md:justify-between">
+  <div class="flex flex-col">
+    <div
+      class="mt-4 w-full grid grid-cols-1 gap-2 md:flex md:flex-row justify-between"
+    >
       <BackToListings class="" />
-      <div class="flex flex-row items-center">
-        <h3 class="text-xl font-semibold text-dark-purple">Add to Watchlist</h3>
+      <div class="flex flex-row items-center justify-end">
+        <h3 class="text-base md:text-xl font-semibold text-dark-purple">
+          Add to Watchlist
+        </h3>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8 text-dark-purple m-2"
+          class="h-5 md:h-8 w-5 md:w-8 text-dark-purple mx-2"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -20,7 +24,7 @@
         </svg>
       </div>
     </div>
-    <div v-if="post" class="">
+    <div v-if="post" class="md:mt-2">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div class="">
           <img
@@ -28,7 +32,6 @@
             alt="post image"
             src="https://drive.google.com/uc?export=view&id=1zuSmi2XiHb6StpW4pQ1VHcVRpse5OvAY"
           />
-          <SellerTile />
         </div>
         <div>
           <h2 class="text-dark-purple font-semibold text-2xl mb-4">
@@ -56,6 +59,7 @@
             Description: {{ post.description }}
           </h3>
         </div>
+        <SellerTile />
       </div>
       <Commenting class="flex my-6 justify-center" />
     </div>

@@ -22,6 +22,10 @@ const PostSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    category: {
+      type:String, 
+      required: true,
+    },
     condition: {
       type: String,
       required: true,
@@ -46,7 +50,6 @@ const PostSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    comments: [CommentSchema],
   },
   { timestamps: true }
 );
