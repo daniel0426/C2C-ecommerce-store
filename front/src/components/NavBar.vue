@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="bg-bright-purple font-epilogue flex flex-row h-20 justify-between px-12 items-center border-b border-black"
+      class="bg-bright-purple font-epilogue flex flex-row h-20 justify-between px-4 items-center"
     >
       <router-link class="text-4xl text-cream font-bold tracking-wide" to="/">
         ThriftMe
