@@ -23,7 +23,12 @@
         pb-10
       "
     >
-      <SinglePost class="" v-for="post in posts" :key="post._id" :post="post" />
+      <SinglePost
+        class="flex mx-auto"
+        v-for="post in posts"
+        :key="post._id"
+        :post="post"
+      />
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@
   <div class="flex flex-col w-screen">
     <NavBar />
 
-    <div class="max-w-4xl w-full mx-auto">
+    <div class="max-w-4xl w-full mx-auto px-2">
       <router-view />
     </div>
   </div>
