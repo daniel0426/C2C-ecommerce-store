@@ -14,7 +14,7 @@
   >
     <div class="flex items-center -mb-12">
       <img
-        class="h-96 w-full mx-auto object-cover"
+        class="h-56 w-full mx-auto object-cover"
         alt="post image"
         src="https://drive.google.com/uc?export=view&id=1zuSmi2XiHb6StpW4pQ1VHcVRpse5OvAY"
       />
