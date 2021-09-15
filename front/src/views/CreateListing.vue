@@ -1,10 +1,11 @@
 <template>
   <div class="w-full m-auto">
-      <form action="" class="w-7/12 m-auto mt-12 box-border p-4 flex flex-col">
+    <BackToListings/>
+      <form action="" class="w-7/12 mx-auto my-12 box-border p-4 flex flex-col">
       <h1 class="text-bright-purple text-3xl self-center mb-12">Create Listings</h1>
-        <div class="flex">
+        <div class="flex-cols lg:flex">
           <div class="item-image flex-1 p-4 mt-4">
-            <input type="file" accept="image/*" class="h-2/3 w-2/3 border-2 m-4" required>
+            <input type="file" accept="image/*" class="h-2/3 w-full border-2 lg:m-4 p-4" required>
           </div>
           <div class="item-info flex-1 flex flex-col p-4">
             <div class="form-group my-2 " >
@@ -15,6 +16,13 @@
               <label for="" >Listing Price</label>
               <input type="text" class="w-full mt-2 block py-1 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700 " required>
             </div>
+            <select name="" id="" class="my-2 w-full block py-2 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700 " required>
+              <option selected disabled value="Category">Category</option>
+              <option value="Mens">Mens</option>
+              <option value="Womens">Womens</option>
+              <option value="Children">Children</option>
+              <option value="Accessories">Accessories</option>
+            </select>
             <select name="" id="" class="my-2 w-full block py-2 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700 " required>
               <option selected disabled value="Listing Condition">Listing Condition</option>
               <option value="New">New</option>
@@ -60,14 +68,20 @@
               </textarea>
             </div>
         </div>
-        <button  class="w-32 self-end mr-4  bg-bright-purple text-white text-lg p-2 rounded-md cursor-pointer  " >Create Listing</button>
+        <button  class="w-32 self-end mr-4   bg-bright-purple text-white text-lg p-2 rounded-md cursor-pointer hover:scale-105  transition transform duration-200 " >Create Listing</button>
       </form>
   </div>
 </template>
 
 <script>
+import BackToListings from "../components/BackToListings"
 export default {
-  name: "CreateListing"
+  
+  name: "CreateListing",
+   components: {
+    BackToListings
+  },
+  
 }
 </script>
 
