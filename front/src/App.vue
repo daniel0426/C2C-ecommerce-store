@@ -1,9 +1,11 @@
 <template>
-  <div class="flex flex-col w-screen bg-cream">
+  <div class="h-screen flex flex-col w-full bg-cream">
     <NavBar />
 
-    <div class="max-w-4xl w-full mx-auto px-2">
-      <router-view />
+    <div class="flex flex-grow overflow-y-auto">
+      <div class="max-w-4xl w-full mx-auto px-2">
+        <router-view class="h-full" />
+      </div>
     </div>
     <Footer />
   </div>
