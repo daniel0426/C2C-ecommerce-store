@@ -72,7 +72,7 @@ export default {
 
     dateffbirth(value){
        this.account.dateofbirth = value;
-      this.VValidateDateOfBirth(value);        
+      this.ValidateDateOfBirth(value);        
       },
 
       email(value){
@@ -87,7 +87,7 @@ export default {
 
       repeatpass(value){
         this.repeatpass = value;
-        this.ValidateRepeatPass
+        this.ValidateRepeatPass(value)
       },
 
   },
@@ -159,7 +159,7 @@ export default {
       },
 
       async CreateAccount(){
-        const response = await fetch("http://localhost:4000/account/create", {
+        const response = await fetch("http://localhost:4000/accounts/", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(this.account)

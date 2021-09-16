@@ -1,7 +1,7 @@
 <template>
 <span @Click="GoBack" class="go-back text-dark-purple bg-transperant font-epilogue sm:text-sm  lg:text-2xl text-extrabold sm:m-5 md:m5 lg:m-10  bg-cream sm:px-5 lg:px-10"> Back to Home</span> <br>
- <div class="container lg:flex md:flex sm:flex-none bg-cream w-screen h-screen font-epilogue  place-items-center">
-   <div class="logo-area space-y-1 text-dark-purple font-epilogue sm:m-10 lg:m-20 w-1/3 text-center text-sm bg-cream  sm:hidden md:block lg:block place-items-center">    
+ <div class="container lg:flex md:flex sm:flex-none bg-cream w- h-screen font-epilogue  place-items-center">
+   <div class="logo-area space-y-1 text-dark-purple font-epilogue sm:m-10 lg:m-20 w-1/3 text-center text-sm bg-cream xsm-hidden  sm:hidden md:block lg:block place-items-center">    
   <h1 class="main-heading sm:text-xl md:text-3xl lg:text-5xl text-dark-purple text-bold font-epilogue" > Thrift Me</h1>
    <img src="https://picsum.photos/id/1025/300/300" alt="" class="logo sm:ml-10 md:ml-1 lg:ml-1"> 
    <span @click="GoSignup" class="signup-link">New to Thriftme <b><u>Create Account Here</u></b></span><br>  
@@ -23,7 +23,6 @@
   <span @click="GoSignup" class="signup-link md:hidden lg:hidden">New to Thriftme <b><u>Create Account Here</u></b></span><br>
 </div>
  </div>
-<footer class="footer sm:h-8 md:h-10 lg:h-10 bg-bright-purple place-self-flexend "></footer>
 </template>
 
 <script>
