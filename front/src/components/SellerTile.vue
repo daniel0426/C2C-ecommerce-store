@@ -1,6 +1,15 @@
 <template>
   <div
-    class="w-96 border-2 border-opacity-30 border-dark-purple rounded-xl px-4 flex flex-row"
+    class="
+      w-96
+      border-2 border-opacity-30
+      bg-white
+      border-dark-purple
+      shadow-md
+      rounded-xl
+      px-4
+      flex flex-row
+    "
   >
     <div class="flex flex-col w-1/3 align-middle">
       <svg
@@ -21,7 +30,14 @@
     </div>
     <div class="flex flex-col ml-6 mt-2">
       <h2
-        class="text-lg font-epilogue pb-2 mb-2 font-semibold text-dark-purple text-center"
+        class="
+          text-lg
+          font-epilogue
+          pb-2
+          mb-2
+          font-semibold
+          text-dark-purple text-center
+        "
       >
         Seller Information:
       </h2>
@@ -37,7 +53,7 @@
 
 <script>
 export default {
-  name: "SellerTile"
+  name: "SellerTile",
 };
 </script>
 
