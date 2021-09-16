@@ -1,20 +1,23 @@
 <template>
-  <div class="flex flex-col w-screen">
+  <div class="flex flex-col w-screen bg-cream">
     <NavBar />
 
     <div class="max-w-4xl w-full mx-auto px-2">
       <router-view />
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import NavBar from "./components/NavBar.vue";
+import Footer from "./components/Footer.vue";
 
 export default {
   components: {
-    NavBar
-  }
+    NavBar,
+    Footer,
+  },
 };
 </script>
 
