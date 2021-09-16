@@ -1,4 +1,5 @@
 <template>
+  <!-- Written by Alexis -->
   <div class="h-screen flex flex-col w-full bg-cream">
     <NavBar />
 

@@ -1,4 +1,6 @@
+
 <template>
+  <!-- Post Detail - Written by Alexis -->
   <div class="flex flex-col">
     <div
       class="
@@ -11,8 +13,11 @@
       "
     >
       <BackToListings class="" />
+
+      <!-- ADD TO WATCHLIST WILL APPEAR/DISAPPEAR BASED ON USER -->
       <AddToWatchlist @add="addToWatchlist" class="hidden md:flex" />
     </div>
+    <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
     <ManageMyListing class="my-4" />
     <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
@@ -63,7 +68,6 @@ import BackToListings from "../components/BackToListings.vue";
 import SellerTile from "../components/SellerTile.vue";
 import Commenting from "../components/Commenting.vue";
 import ManageMyListing from "../components/ManageMyListing.vue";
-
 export default {
   name: "PostDetail",
 
