@@ -13,7 +13,7 @@
     <div class="flex flex-row font-epilogue">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-20 w-20 text-light-purple"
+        class="h-20 w-20 mx-2 text-light-purple"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -23,7 +23,7 @@
           clip-rule="evenodd"
         />
       </svg>
-      <div class="flex flex-col pt-4">
+      <div class="flex flex-col">
         <!-- ADD USER'S NAME IN ONCE ACCOUNT FUNCTIONALITY IS COMPLETE -->
         <h3 class="text-dark-purple text-md font-semibold">User Name asked:</h3>
         <h4 class="text-dark-purple text-md">
@@ -37,10 +37,11 @@
         items-end
         justify-between
         font-epilogue
+        text-dark-purple text-opacity-30
         justify-items-end
       "
     >
-      <h3 class="flex text-dark-purple text-right text-md">
+      <h3 class="flex text-right text-md w-48">
         {{ new Date(comment.createdAt).toLocaleDateString("en-NZ") }} at
         {{ new Date(comment.createdAt).toLocaleTimeString("en-NZ") }}
       </h3>
