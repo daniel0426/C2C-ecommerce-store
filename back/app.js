@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Post = require("./models/Post");
 const bcrypt = require("bcrypt");
 
 const app = express();
@@ -26,6 +25,8 @@ mongoose.connect(
     });
   }
 );
+
+const Post = require("./models/Post");
 
 //Get all posts - Alexis
 
@@ -56,12 +57,14 @@ app.post("/posts", async (req, res, next) => {
     const post = new Post({
       title: req.body.title,
       price: req.body.price,
+      category : req.body.category,
       condition: req.body.condition,
       imgURL : req.body.imgURL,
       size: req.body.size,
       location: req.body.location,
       paymentType: req.body.paymentType,
       shippingOption: req.body.shippingOption,
+      description : req.body.description
     });
     const savedPost = await post.save();
     res.json(savedPost);
