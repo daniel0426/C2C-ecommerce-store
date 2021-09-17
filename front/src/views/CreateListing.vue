@@ -335,12 +335,12 @@ export default {
       shippingOption: this.shippingOption,
       description: this.description,
     };
-    fetch("http://localhos:4000/posts", {
+    fetch("http://localhost:4000/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(post),
     }).then(() => {
-      this.$rouoter.push("/");
+      this.$router.push("/");
     });
   },
 };

@@ -74,8 +74,8 @@
         text-center
         bg-cream
         sm-h-screen
-        xsm:w-screen
-        sm:w-screen
+        xsm:w-full
+        sm:w-full
         lg:w2/3
         block
         text-dark-purple text-sm
@@ -100,9 +100,9 @@
       <p>If you are an existing user, enter your login below</p>
       <p>to enjoy the full Thriftme experience</p>
       <form
-        @submit.prevent
+        @submit.prevent="logUserIn"
         class="login-form text-center space-y-5 m-5"
-        name="login"
+        name="login-form"
       >
         <input
           class="
@@ -117,9 +117,10 @@
             py-1
           "
           type="text"
-          name="login-email"
-          v-model="loginemail"
+          name="email"
+          v-model="user.email"
           placeholder="Enter your email"
+          required="true"
         /><br />
         <input
           class="
@@ -134,9 +135,10 @@
             py-1
           "
           type="password"
-          name="login-password"
-          v-model="loginpassword"
+          name="password"
+          v-model="user.password"
           placeholder="Enter your password"
+          required="true"
         /><br />
         <button
           type="submit"
@@ -171,9 +173,9 @@ export default {
 
   data () {
     return {
-      login: {
-        loginemail: null,
-        loginpassword: null
+      user: {
+        email: null,
+        password: null,
       }
     }
   },
@@ -187,7 +189,17 @@ export default {
       return this.$router.push(CreateAccountVue)
     },
 
-    Login () {}
+    async logUserIn() {  
+      const response = await fetch("http://localhost:4000/accounts/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(this.user),
+        credentials: "include",
+      });
+      const data = await response.json();
+      console.log(data);
+      return this.$router.push(HomeVue)
+    },
   }
 }
 </script>
