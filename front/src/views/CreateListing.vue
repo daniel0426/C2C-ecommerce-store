@@ -3,7 +3,6 @@
     <BackToListings />
     <form
       @submit.prevent="uploadPost"
-      action=""
       class="mx-auto my-12 box-border p-4 flex flex-col"
     >
       <h1 class="text-bright-purple text-3xl self-center mb-12">
@@ -320,31 +319,33 @@ export default {
       }
       this.imgURL = result.url;
     },
-  },
+  
   
 
   //upload post to database
- uploadPost() {
-    let post = {
-      title: this.title,
-      price: this.price,
-      imgURL: this.imgURL,
-      category: this.category,
-      condition: this.condition,
-      size: this.size,
-      location: this.location,
-      paymentType: this.paymentType,
-      shippingOption: this.shippingOption,
-      description: this.description,
-    };
+  uploadPost() {
+    console.log('post')
+      let post = {
+        title: this.title,
+        price: this.price,
+        imgURL: this.imgURL,
+        category: this.category,
+        condition: this.condition,
+        size: this.size,
+        location: this.location,
+        paymentType: this.paymentType,
+        shippingOption: this.shippingOption,
+        description: this.description,
+      };
 
-     fetch("http://localhost:4000/posts", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(post),
-    }).then(()=> {
-      this.$router.push("/")
-    })
+      fetch("http://localhost:4000/posts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(post),
+      }).then(()=> {
+        this.$router.push("/")
+      })
+    },
   },
 };
 </script>
