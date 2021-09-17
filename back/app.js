@@ -59,7 +59,7 @@ app.post("/posts", async (req, res, next) => {
       price: req.body.price,
       category : req.body.category,
       condition: req.body.condition,
-      imgURL : req.body.imgURL,
+      imgURL: req.body.imgURL,
       size: req.body.size,
       location: req.body.location,
       paymentType: req.body.paymentType,
@@ -76,19 +76,16 @@ app.post("/posts", async (req, res, next) => {
 //Account endpoints
 const Account = require("./models/Account");
 
-app.post('/account/create', async (req, res) => {
-  const existingAccount = await Account.findOne({email: req.body.email});
+app.post("/account/create", async (req, res) => {
+  const existingAccount = await Account.findOne({ email: req.body.email });
   if (existingAccount) {
-    return res.status(409).json({message:"Email Already Exists"});
-  }   
-  else {
+    return res.status(409).json({ message: "Email Already Exists" });
+  } else {
     bcrypt.hash(req.body.password, 10, async (err, hash) => {
       if (err) {
-        return res.status(5500).json({error:err});
-      } 
-      else {
-        const account  = new Account({
-          
+        return res.status(5500).json({ error: err });
+      } else {
+        const account = new Account({
           fname: req.body.fname,
           lname: req.body.lname,
           dateofbirth: req.body.dateofbirth,
@@ -101,4 +98,50 @@ app.post('/account/create', async (req, res) => {
     });
   }
 });
-   
+
+//  ######   #######  ##     ## ##     ## ######## ##    ## ########  ######
+// ##    ## ##     ## ###   ### ###   ### ##       ###   ##    ##    ##    ##
+// ##       ##     ## #### #### #### #### ##       ####  ##    ##    ##
+// ##       ##     ## ## ### ## ## ### ## ######   ## ## ##    ##     ######
+// ##       ##     ## ##     ## ##     ## ##       ##  ####    ##          ##
+// ##    ## ##     ## ##     ## ##     ## ##       ##   ###    ##    ##    ##
+//  ######   #######  ##     ## ##     ## ######## ##    ##    ##     ######
+
+//Get All Comments - Alexis
+
+app.get("/posts/:postId/comments", async (req, res) => {
+  const post = await Post.findById(req.params.postId);
+  res.status(200).json(post.comments);
+});
+
+//Get Specific Comment - Alexis
+
+// app.get("/posts/:postId/comments/:commentId", async (req, res) => {
+//   const post = await Post.findById(req.params.postId);
+//   const comment = post.comments.id(req.params.commentId);
+//   res.status(200).json(comment);
+// });
+
+//Delete Comments - Alexis
+
+app.delete("/posts/:postId/comments/:commentId", async (req, res) => {
+  const post = await Post.findById(req.params.postId); // find the post
+  post.comments.pull(req.params.commentId); // pull the matching comment from the posts comment array
+  const savedPost = await post.save(); // save the post back to the database
+  res.status(200).send(savedPost); // send back the newly saved post to the client
+});
+
+//Post Comment - Alexis
+
+app.post("/posts/:postId/comments", async (req, res, next) => {
+  try {
+    const post = await Post.findById(req.params.postId);
+    post.comments.push({
+      text: req.body.text,
+    });
+    const savedPost = await post.save();
+    res.status(200).send(savedPost);
+  } catch (err) {
+    next(err);
+  }
+});

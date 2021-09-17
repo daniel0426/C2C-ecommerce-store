@@ -1,9 +1,10 @@
 <template>
-  <!-- Written by Alexis -->
+  <!-- Manage My Listing Component - Alexis -->
   <div
     class="
       shadow-md
       p-2
+      my-2
       border-2 border-opacity-30
       font-epilogue font-semibold
       rounded-lg
@@ -25,7 +26,7 @@
           py-2
           bg-bright-purple
           rounded-md
-          text-cream
+          text-white
           font-semibold
           mx-2
         "
@@ -38,7 +39,7 @@
           py-2
           bg-bright-purple
           rounded-md
-          text-cream
+          text-white
           font-semibold
           mx-2
         "

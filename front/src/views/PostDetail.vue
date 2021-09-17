@@ -57,8 +57,8 @@
         </div>
         <SellerTile />
       </div>
-      <Commenting class="flex my-6 justify-center" />
     </div>
+    <Commenting class="mb-8" :post="post" @comment="getPost" />
   </div>
 </template>
 
@@ -85,11 +85,11 @@ export default {
 
   data() {
     return {
-      post: null,
+      post: {},
     };
   },
 
-  mounted() {
+  async mounted() {
     this.getPost();
   },
 
