@@ -1,7 +1,16 @@
 <template>
+  <!-- Nav Bar - Alexis -->
   <div>
     <div
-      class="bg-bright-purple font-epilogue flex flex-row h-20 justify-between px-4 items-center"
+      class="
+        bg-bright-purple
+        font-epilogue
+        flex flex-row
+        h-20
+        justify-between
+        px-4
+        items-center
+      "
     >
       <router-link class="text-4xl text-cream font-bold tracking-wide" to="/">
         ThriftMe
@@ -26,7 +35,24 @@
         </button>
         <div
           v-if="menuOpen"
-          class="text-right flex flex-col z-10 fixed top-0 right-0 w-80 px-4 py-6 text-2xl font-semibold text-cream h-screen bg-bright-purple space-y-4 items-end"
+          class="
+            text-right
+            flex flex-col
+            z-10
+            fixed
+            top-0
+            right-0
+            w-80
+            px-4
+            py-6
+            text-2xl
+            font-semibold
+            text-cream
+            h-screen
+            bg-bright-purple
+            space-y-4
+            items-end
+          "
         >
           <div class="flex flex-row justify-between mb-8 w-full">
             <button @click="hideMenu">
@@ -76,7 +102,18 @@
       </div>
 
       <div
-        class="hidden md:text-lg md:flex flex-row text-cream lg:text-xl uppercase space-x-4 lg:space-x-8 font-semibold"
+        class="
+          hidden
+          md:text-lg
+          md:flex
+          flex-row
+          text-cream
+          lg:text-xl
+          uppercase
+          space-x-4
+          lg:space-x-8
+          font-semibold
+        "
       >
         <router-link to="/CreateListing"> List Item </router-link>
         <router-link to="/MyListings"> My Listings </router-link>
@@ -110,25 +147,23 @@ export default {
   name: "NavBar",
 
   directives: {
-    clickOutside: vClickOutside.directive
+    clickOutside: vClickOutside.directive,
   },
 
   data() {
     return {
-      menuOpen: false
+      menuOpen: false,
     };
   },
 
   methods: {
     openMenu() {
-      console.log("open");
       this.menuOpen = true;
     },
     hideMenu() {
-      console.log("close");
       this.menuOpen = false;
-    }
-  }
+    },
+  },
 };
 </script>
 

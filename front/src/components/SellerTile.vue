@@ -1,4 +1,5 @@
 <template>
+  <!-- Seller Tile - Alexis -->
   <div
     class="
       w-96

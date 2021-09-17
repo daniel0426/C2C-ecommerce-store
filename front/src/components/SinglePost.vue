@@ -1,4 +1,5 @@
 <template>
+  <!-- Single Post Tile Component - Alexis -->
   <router-link
     :to="{ name: 'PostDetail', params: { postId: post._id } }"
     class="
@@ -23,7 +24,14 @@
     </div>
     <div class="h-36 flex flex-col justify-end">
       <div
-        class="flex flex-row flex-wrap w-full justify-between items-center z-10 p-2"
+        class="
+          flex flex-row flex-wrap
+          w-full
+          justify-between
+          items-center
+          z-10
+          p-2
+        "
       >
         <h3 class="ml-2 text-dark-purple font-semibold w-full">
           {{ post.title }}
@@ -48,7 +56,7 @@
           {{
             (post.price / 100).toLocaleString("en-US", {
               style: "currency",
-              currency: "USD"
+              currency: "USD",
             })
           }}
         </h3>
@@ -61,11 +69,11 @@
 export default {
   name: "SinglePost",
   props: {
-    post: Object
+    post: Object,
   },
   mounted() {
     console.log(this.post._id);
-  }
+  },
 };
 </script>
 

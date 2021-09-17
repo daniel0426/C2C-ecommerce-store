@@ -1,5 +1,5 @@
 <template>
-  <!-- Written by Alexis -->
+  <!-- Whole App Layout/Styling - Alexis -->
   <div class="h-screen flex flex-col w-full bg-cream">
     <NavBar />
 
