@@ -1,4 +1,5 @@
 <template>
+  <!-- Alexis -->
   <div class="">
     <div class="flex flex-col">
       <router-link to="/CreateAccount">Create Account </router-link>
@@ -23,7 +24,12 @@
         pb-10
       "
     >
-      <SinglePost class="" v-for="post in posts" :key="post._id" :post="post" />
+      <SinglePost
+        class="flex mx-auto"
+        v-for="post in posts"
+        :key="post._id"
+        :post="post"
+      />
     </div>
   </div>
 </template>
@@ -35,11 +41,11 @@ import SinglePost from "../components/SinglePost.vue";
 export default {
   name: "Home",
   components: {
-    SinglePost
+    SinglePost,
   },
   data() {
     return {
-      posts: []
+      posts: [],
     };
   },
   mounted() {
@@ -51,7 +57,7 @@ export default {
       const data = await response.json();
       this.posts = data;
       console.log(this.posts);
-    }
-  }
+    },
+  },
 };
 </script>

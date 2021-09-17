@@ -2,6 +2,8 @@
   <router-link
     :to="{ name: 'PostDetail', params: { postId: post._id } }"
     class="
+      border border-red-500
+      max-w-xs
       rounded-md
       shadow-lg
       hover:shadow-xl

@@ -1,34 +1,30 @@
+
 <template>
+  <!-- Post Detail - Written by Alexis -->
   <div class="flex flex-col">
     <div
-      class="mt-4 w-full grid grid-cols-1 gap-2 md:flex md:flex-row justify-between"
+      class="
+        mt-4
+        w-full
+        grid grid-cols-1
+        gap-2
+        md:flex md:flex-row
+        justify-between
+      "
     >
       <BackToListings class="" />
-      <div class="flex flex-row items-center justify-end">
-        <h3 class="text-base md:text-xl font-semibold text-dark-purple">
-          Add to Watchlist
-        </h3>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 md:h-8 w-5 md:w-8 text-dark-purple mx-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-          />
-        </svg>
-      </div>
+
+      <!-- ADD TO WATCHLIST WILL APPEAR/DISAPPEAR BASED ON USER -->
+      <AddToWatchlist @add="addToWatchlist" class="hidden md:flex" />
     </div>
-    <div v-if="post" class="md:mt-2">
+    <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
+    <ManageMyListing class="my-4" />
+    <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div class="">
+          <AddToWatchlist @add="addToWatchlist" class="md:hidden" />
           <img
-            class="h-96 w-96 mb-6 rounded-xl object-cover"
+            class="h-96 w-96 mb-6 rounded-xl object-cover shadow-md"
             alt="post image"
             src="https://drive.google.com/uc?export=view&id=1zuSmi2XiHb6StpW4pQ1VHcVRpse5OvAY"
           />
@@ -43,7 +39,7 @@
               {{
                 (post.price / 100).toLocaleString("en-US", {
                   style: "currency",
-                  currency: "USD"
+                  currency: "USD",
                 })
               }}
             </h3>
@@ -67,26 +63,29 @@
 </template>
 
 <script>
+import AddToWatchlist from "../components/AddToWatchlist.vue";
 import BackToListings from "../components/BackToListings.vue";
 import SellerTile from "../components/SellerTile.vue";
 import Commenting from "../components/Commenting.vue";
-
+import ManageMyListing from "../components/ManageMyListing.vue";
 export default {
   name: "PostDetail",
 
   components: {
+    AddToWatchlist,
     BackToListings,
     SellerTile,
-    Commenting
+    Commenting,
+    ManageMyListing,
   },
 
   props: {
-    postId: String
+    postId: String,
   },
 
   data() {
     return {
-      post: null
+      post: null,
     };
   },
 
@@ -101,8 +100,11 @@ export default {
       );
       const data = await response.json();
       this.post = data;
-    }
-  }
+    },
+    async addToWatchlist() {
+      // placeholder function to add to watchlist
+    },
+  },
 };
 </script>
 
