@@ -26,7 +26,7 @@
           <img
             class="h-96 w-96 mb-6 rounded-xl object-cover shadow-md"
             alt="post image"
-            src="https://drive.google.com/uc?export=view&id=1zuSmi2XiHb6StpW4pQ1VHcVRpse5OvAY"
+            :src="post.imgURL"
           />
         </div>
         <div>
@@ -57,8 +57,8 @@
         </div>
         <SellerTile />
       </div>
-      <Commenting class="flex my-6 justify-center" />
     </div>
+    <Commenting class="mb-8" :post="post" @comment="getPost" />
   </div>
 </template>
 
@@ -85,11 +85,11 @@ export default {
 
   data() {
     return {
-      post: null,
+      post: {},
     };
   },
 
-  mounted() {
+  async mounted() {
     this.getPost();
   },
 

@@ -1,4 +1,5 @@
 <template>
+  <!-- Back to Listings - Alexis -->
   <router-link to="/" class="flex flex-row items-center">
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,15 +13,13 @@
         clip-rule="evenodd"
       />
     </svg>
-    <h3 class="text-xl font-semibold text-dark-purple">
-      Back to Listings
-    </h3>
+    <h3 class="text-xl font-semibold text-dark-purple">Back to Listings</h3>
   </router-link>
 </template>
 
 <script>
 export default {
-  name: "BackToListings"
+  name: "BackToListings",
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <!-- Alexis -->
+  <!-- Home Layout/Styling - Alexis -->
   <div class="">
     <div class="flex flex-col">
       <router-link to="/CreateAccount">Create Account </router-link>

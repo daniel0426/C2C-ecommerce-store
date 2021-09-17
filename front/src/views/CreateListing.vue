@@ -251,6 +251,7 @@
         </div>
       </div>
       <button
+      type="submit"
         class="
           w-32
           self-end
@@ -320,9 +321,10 @@ export default {
       this.imgURL = result.url;
     },
   },
+  
 
   //upload post to database
-  uploadPost() {
+ uploadPost() {
     let post = {
       title: this.title,
       price: this.price,
@@ -335,13 +337,14 @@ export default {
       shippingOption: this.shippingOption,
       description: this.description,
     };
-    fetch("http://localhost:4000/posts", {
+
+     fetch("http://localhost:4000/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(post),
-    }).then(() => {
-      this.$router.push("/");
-    });
+    }).then(()=> {
+      this.$router.push("/")
+    })
   },
 };
 </script>

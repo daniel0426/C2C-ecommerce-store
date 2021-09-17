@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const CommentSchema = mongoose.Schema(
   {
-    author: { type: String, required: true },
+    // author: { type: String, required: true },
     text: { type: String, required: true },
   },
   { timestamps: true }
@@ -23,7 +23,7 @@ const PostSchema = mongoose.Schema(
       required: true,
     },
     category: {
-      type:String, 
+      type: String,
       required: true,
     },
     condition: {
@@ -50,6 +50,7 @@ const PostSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    comments: [CommentSchema],
   },
   { timestamps: true }
 );
