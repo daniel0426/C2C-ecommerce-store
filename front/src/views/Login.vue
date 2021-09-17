@@ -12,9 +12,9 @@
 <h1 class="main-heading sm:text-xl md:text-3xl lg:text-4xl text-dark-purple text-bold font-epilogue">Login</h1><br>
 <p>If you are an existing user, enter your login below</p>
 <p>to enjoy the full Thriftme experience</p>
-<form @submit.prevent class="login-form text-center  space-y-5 m-5" name="login">
-    <input class="login-email bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="text" name="login-email" v-model="loginemail" placeholder="Enter your email"/><br>
-    <input class="login-password bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="password" name="login-password" v-model="loginpassword" placeholder="Enter your password"/><br>
+<form @submit.prevent="logIn" class="login-form text-center  space-y-5 m-5" name="login">
+    <input class="login-email bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="text" name="login-email" v-model="email" placeholder="Enter your email"/><br>
+    <input class="login-password bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" type="password" name="login-password" v-model="password" placeholder="Enter your password"/><br>
     <button type="submit" class="login-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Login</button><br><br>
   </form><br>
   <span>Forgot your login details?</span><br><br>
@@ -33,9 +33,9 @@ export default {
 
      data(){
       return {
-        login:{
-          loginemail: null,
-          loginpassword: null
+        account:{
+          email: null,
+          password: null
         }
       }
      },
@@ -50,8 +50,15 @@ export default {
          return this.$router.push(CreateAccountVue);
       },
 
-      Login(){
-        
+      async logIn(){
+        const response = await fetch("http://localhost:4000/accounts/login", {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(this.account),
+          credentials: "include",
+        });
+        const data = await response.json();
+        console.log(data);        
       }
 }
 }

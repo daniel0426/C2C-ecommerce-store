@@ -12,7 +12,7 @@
   <div class="signup text-center sm:m-5 md:m-5 lg:m-10 sm:mt-5 bg-cream xsm:w-full sm:w-full lg;w2/3 block"> 
  <h1 class="title text-dark-purple font-epilogue text-bold sm:text-xl md:text-2xl lg:text-3xl text-center ">Sign Up</h1><br>
     <span @click="GoLogin" class="subtitle text-dark-purple font-epilogue  text-xs text-center">Already a ThriftMe user? <b><u>Sign in here</u></b></span><br><br>
-    <form submit.prevent="CreateAccount" class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center" name="signup-form">
+    <form @submit.prevent="CreateAccount" class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center" name="signup-form">
        
       <input type="text" class="fname bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="fname" v-model="account.fname" placeholder="FIRST NAME"  required="true"><br>
        <span class="error text-red-600 test-sm" v-if="msg.fname">{{msg.fname}}</span><br>
@@ -27,7 +27,7 @@
       <input type="password"  class="repeat-pass bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="repeatpass" v-model="repeatpass" placeholder="REPEAT PASSWORD"  required="true"><br>     
        <span class="error text-red-600 text-sm" v-if ="msg.repeatpass">{{msg.repeatpass}}</span><br>
       <input type="checkbox"  name="agree" required="true"> I agree to the terms and conditions of use<br> 
-       <button type="submit" class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Create Account</button><br>    
+       <button  type="submit" class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Create Account</button><br>    
     </form><br> 
     </div>    
 </div>
@@ -159,13 +159,13 @@ export default {
       },
 
       async CreateAccount(){
-        const response = await fetch("http://localhost:4000/accounts/", {
+        const response = await fetch("http://localhost:4000/accounts", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(this.account)
         })
-        const data = await response.json();
-        console.log(data);
+        const data = await response.json(); 
+        console.log(data) ;      
       }
      },       
      
