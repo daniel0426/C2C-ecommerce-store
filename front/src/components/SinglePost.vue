@@ -3,8 +3,8 @@
   <router-link
     :to="{ name: 'PostDetail', params: { postId: post._id } }"
     class="
-      border border-red-500
       max-w-xs
+      w-full
       rounded-md
       shadow-lg
       hover:shadow-xl
@@ -13,15 +13,13 @@
       duration-150
       flex flex-col
       justify-between
+      bg-white
     "
   >
-    <div class="flex items-center -mb-12">
-      <img
-        class="h-56 w-full mx-auto object-cover"
-        alt="post image"
-        src="https://drive.google.com/uc?export=view&id=1zuSmi2XiHb6StpW4pQ1VHcVRpse5OvAY"
-      />
-    </div>
+    <div
+      class="flex items-center -mb-12 h-56 w-full mx-auto"
+      :style="`background-image: url(${post.imgURL});`"
+    ></div>
     <div class="h-36 flex flex-col justify-end">
       <div
         class="
