@@ -1,5 +1,5 @@
 <template>
- <span @Click="GoBack" class="go-back text-dark-purple bg-transperant font-epilogue sm:text-lg  lg:text-2xl text-extrabold sm:m-10 lg:m-10 sm:h-auto  bg-cream sm:px-5 lg:px-10"> Back to Home</span> <br>
+ <span @Click="goBack" class="go-back text-dark-purple bg-transperant font-epilogue sm:text-lg  lg:text-2xl text-extrabold sm:m-10 lg:m-10 sm:h-auto  bg-cream sm:px-5 lg:px-10"> Back to Home</span> <br>
 <div class="container lg:flex md:flex sm:flex-none bg-cream w-screen h-screen font-epilogue place-items-center">  
   <div class="logo-area space-y-1 text-dark-purple font-epilogue m-20 w-1/3 text-center text-sm bg-cream  sm:hidden md:block lg:block place-items-center">    
   <h1 class="main-heading sm:text-xl md:text-3xl lg:text-5xl text-dark-purple text-bold font-epilogue" > Thrift Me</h1>
@@ -11,8 +11,8 @@
 
   <div class="signup text-center sm:m-5 md:m-5 lg:m-10 sm:mt-5 bg-cream xsm:w-full sm:w-full lg;w2/3 block"> 
  <h1 class="title text-dark-purple font-epilogue text-bold sm:text-xl md:text-2xl lg:text-3xl text-center ">Sign Up</h1><br>
-    <span @click="GoLogin" class="subtitle text-dark-purple font-epilogue  text-xs text-center">Already a ThriftMe user? <b><u>Sign in here</u></b></span><br><br>
-    <form submit.prevent="CreateAccount" class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center" name="signup-form">
+    <span @click="goLogin" class="subtitle text-dark-purple font-epilogue  text-xs text-center">Already a ThriftMe user? <b><u>Sign in here</u></b></span><br><br>
+    <form @submit.prevent="createAccount" class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center" name="signup-form">
        
       <input type="text" class="fname bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="fname" v-model="account.fname" placeholder="FIRST NAME"  required="true"><br>
        <span class="error text-red-600 test-sm" v-if="msg.fname">{{msg.fname}}</span><br>
@@ -27,11 +27,11 @@
       <input type="password"  class="repeat-pass bg-white placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1" name="repeatpass" v-model="repeatpass" placeholder="REPEAT PASSWORD"  required="true"><br>     
        <span class="error text-red-600 text-sm" v-if ="msg.repeatpass">{{msg.repeatpass}}</span><br>
       <input type="checkbox"  name="agree" required="true"> I agree to the terms and conditions of use<br> 
-       <button type="submit" class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Create Account</button><br>    
+       <button  type="submit" class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream">Create Account</button><br>    
     </form><br> 
     </div>    
 </div>
-<footer class="footer sm:h-8 md:h-10 lg:h-10 bg-bright-purple "></footer>
+
 </template>
 
 <script>
@@ -62,32 +62,32 @@ export default {
 
   name(value){
       this.account.fname = value;
-      this.ValidateFname(value);
+      this.validateFname(value);
     },
 
      lname(value){
       this.account.lname = value;
-      this.ValidateLname(value)
+      this.validateLname(value)
     },
 
     dateffbirth(value){
        this.account.dateofbirth = value;
-      this.VValidateDateOfBirth(value);        
+      this.validateDateOfBirth(value);        
       },
 
       email(value){
         this.account.email=value;
-        this.ValidateEmail(value);
+        this.validateEmail(value);
       },
 
       password(value){
         this.account.password = value;
-        this.ValidatePassword(value);
+        this.validatePassword(value);
       },
 
       repeatpass(value){
         this.repeatpass = value;
-        this.ValidateRepeatPass
+        this.validateRepeatPass(value)
       },
 
   },
@@ -97,7 +97,7 @@ export default {
 
     methods:{
 
-      ValidateFname(value){
+      validateFname(value){
         if (value.length < 3 ) {
           this.msg['fname'] = 'Name must contain at least 3 letters'
         } else{
@@ -105,7 +105,7 @@ export default {
         }
       },
 
-      ValidateLname(value){
+      validateLname(value){
          if (value.length < 2 ) {
           this.msg['lname'] = 'Name must contain at least 2 letters'
         } else{
@@ -114,7 +114,7 @@ export default {
         
       },
 
-      ValidateDateOfBirth(value){
+      validateDateOfBirth(value){
         if (value.length < 10){
           this.msg['dateofbirth'] = 'Please enter a valid Date of birth DD/MM/YY'
         }else{
@@ -123,16 +123,16 @@ export default {
        
       },
 
-      ValidateEmail(value){
+      validateEmail(value){
         if (/^\w+([\.-]?w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/.test(value))
         {
-          this.msg['account.email'] = ' ';
+          this.msg['email'] = ' ';
         } else{
-          this.msg['account.email'] = 'Invalid Email Address';
+          this.msg['email'] = 'Invalid Email Address';
         }
       },
 
-      ValidatePassword (value){
+      validatePassword (value){
         const difference = 8 - value.length;
         if (value.length <8 ) {
           this.msg['password'] = 'Password must be 8 characters !  ' +  difference +  ' chracters  left';
@@ -141,7 +141,7 @@ export default {
         }
       },
 
-      ValidateRepeatPass (value) {
+      validateRepeatPass (value) {
          const difference = 8 - value.length;
         if (value.length < 8 ) {
           this.msg['repeatpass'] = 'Password must be 8 characters !  ' +  difference +  ' chracters  left';
@@ -150,22 +150,22 @@ export default {
         }
         
         },
-         GoBack(){
+         goBack(){
         return this.$router.push(HomeVue)
       },
 
-      GoLogin(){
+      goLogin(){
         return this.$router.push(LoginVue)
       },
 
-      async CreateAccount(){
-        const response = await fetch("http://localhost:4000/account/create", {
+      async createAccount(){
+        const response = await fetch("http://localhost:4000/accounts", {
           method: "POST",
           headers: {"Content-Type": "application/json"},
           body: JSON.stringify(this.account)
         })
-        const data = await response.json();
-        console.log(data);
+        const data = await response.json(); 
+        console.log(data) ;      
       }
      },       
      
