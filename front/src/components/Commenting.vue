@@ -4,12 +4,12 @@
     <h2 class="text-dark-purple font-semibold text-2xl">
       Users Comments and Questions:
     </h2>
-    <!-- 
+
     <div class="py-4" v-if="comments.length === 0">
       <h2 class="italic text-md text-center text-purple-grey">
         There are currently no comments to display.
       </h2>
-    </div> -->
+    </div>
 
     <UserComment
       v-for="comment in comments"
@@ -83,7 +83,9 @@ export default {
     // },
     post: {
       type: Object,
-      default: {},
+      default: {
+        comments: [],
+      },
     },
   },
 
