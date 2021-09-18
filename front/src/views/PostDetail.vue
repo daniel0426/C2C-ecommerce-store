@@ -58,7 +58,7 @@
         <SellerTile />
       </div>
     </div>
-    <Commenting class="mb-8" :post="post" @comment="getPost" />
+    <Commenting class="mb-8" :post="post" @refresh="getPost" />
   </div>
 </template>
 

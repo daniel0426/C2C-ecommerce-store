@@ -6,7 +6,7 @@
       max-w-xs
       w-full
       rounded-md
-      shadow-lg
+      shadow-xl
       hover:shadow-xl
       overflow-hidden
       transition

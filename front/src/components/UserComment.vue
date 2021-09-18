@@ -41,26 +41,41 @@
         justify-items-end
       "
     >
-      <h3 class="flex text-right text-md w-48">
+      <h3 class="flex text-right text-md w-50">
         {{ new Date(comment.createdAt).toLocaleDateString("en-NZ") }} at
         {{ new Date(comment.createdAt).toLocaleTimeString("en-NZ") }}
       </h3>
-      <div class="flex flex-row text-dark-purple font-semibold text-md">
-        Reply
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-4 h-4 ml-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      <div class="flex">
+        <button
+          type="button"
+          @click="$emit('delete')"
+          class="
+            flex flex-row
+            mr-4
+            text-opacity-50 text-dark-purple
+            font-semibold
+            text-md
+          "
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
-          />
-        </svg>
+          <h3>Delete</h3>
+        </button>
+        <div class="flex flex-row text-dark-purple font-semibold text-md">
+          Reply
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4 ml-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+            />
+          </svg>
+        </div>
       </div>
     </div>
   </div>

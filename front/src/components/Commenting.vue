@@ -16,6 +16,7 @@
       :key="comment.id"
       :comment="comment"
       @reply="reply(comment)"
+      @delete="deleteComment(comment._id)"
       class="my-2"
     />
 
@@ -27,6 +28,7 @@
           border-2 border-opacity-30
           rounded-lg
           mb-4
+          mt-4
           border-dark-purple
           placeholder-light-purple
           shadow-md
@@ -115,7 +117,21 @@ export default {
         text: "",
       };
 
-      this.$emit("comment");
+      this.$emit("refresh");
+    },
+
+    async deleteComment(commentId) {
+      console.log(this.post._id + commentId);
+      const response = await fetch(
+        "http://localhost:4000/posts/" +
+          this.post._id +
+          "/comments/" +
+          commentId,
+        { method: "DELETE" }
+      );
+      const data = await response.json();
+
+      this.$emit("refresh");
     },
 
     async reply(comment) {
