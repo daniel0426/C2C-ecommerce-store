@@ -170,6 +170,7 @@ import CreateAccountVue from './CreateAccount.vue'
 import HomeVue from './Home.vue'
 export default {
   name: 'Login',
+  emits: ["loggedin"],
 
   data () {
     return {
@@ -197,7 +198,9 @@ export default {
         credentials: "include",
       });
       const data = await response.json();
-      console.log(data);
+      window.localStorage.setItem("email", data.email)
+      this.$emit("loggedin");
+      console.log("User Logged In");
       return this.$router.push(HomeVue)
     },
   }

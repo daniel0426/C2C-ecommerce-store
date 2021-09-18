@@ -39,7 +39,7 @@ mongoose.connect(
     }
 );
 
-const Post = require("./models/Post");
+
 
 //Get all posts - Alexis
 
@@ -188,6 +188,11 @@ app.post("/accounts/login", async (req, res) => {
             }
         );
     }
+});
+
+app.get("/accounts/logout", async (req, res) => {
+    res.cookie("jwt", "", {maxAge: 1})
+    res.json({message: 'logged out ' });
 });
 
 //  ######   #######  ##     ## ##     ## ######## ##    ## ########  ######
