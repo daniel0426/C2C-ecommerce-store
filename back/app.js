@@ -39,12 +39,9 @@ mongoose.connect(
   }
 );
 
-<<<<<<< HEAD
 
 const Post = require("./models/Post");
 
-=======
->>>>>>> 4a7f2f2e56fbd60039cb967fcb6726af3e8048ae
 //Get all posts - Alexis
 
 app.get("/posts", async (req, res, next) => {
