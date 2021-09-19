@@ -18,7 +18,7 @@
       <AddToWatchlist @add="addToWatchlist" class="hidden md:flex" />
     </div>
     <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
-    <ManageMyListing class="my-4" />
+    <ManageMyListing class="my-4" :postId="post._id"  :post="post" />
     <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div class="">
@@ -26,7 +26,7 @@
           <img
             class="h-96 w-96 mb-6 rounded-xl object-cover shadow-md"
             alt="post image"
-            src="https://drive.google.com/uc?export=view&id=1zuSmi2XiHb6StpW4pQ1VHcVRpse5OvAY"
+            :src="post.imgURL"
           />
         </div>
         <div>
@@ -57,8 +57,10 @@
         </div>
         <SellerTile />
       </div>
-      <Commenting class="flex my-6 justify-center" />
     </div>
+    <Commenting class="mb-8" :post="post" @comment="getPost" />
+     
+   
   </div>
 </template>
 
@@ -85,12 +87,12 @@ export default {
 
   data() {
     return {
-      post: null,
+      post: {},
     };
   },
 
-  mounted() {
-    this.getPost();
+  async mounted() {
+       this.getPost()
   },
 
   methods: {

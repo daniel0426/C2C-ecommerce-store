@@ -1,9 +1,10 @@
 <template>
+  <!-- Single Post Tile Component - Alexis -->
   <router-link
     :to="{ name: 'PostDetail', params: { postId: post._id } }"
     class="
-      border border-red-500
       max-w-xs
+      w-full
       rounded-md
       shadow-lg
       hover:shadow-xl
@@ -12,18 +13,23 @@
       duration-150
       flex flex-col
       justify-between
+      bg-white
     "
   >
-    <div class="flex items-center -mb-12">
-      <img
-        class="h-56 w-full mx-auto object-cover"
-        alt="post image"
-        src="https://drive.google.com/uc?export=view&id=1zuSmi2XiHb6StpW4pQ1VHcVRpse5OvAY"
-      />
-    </div>
+    <div
+      class="flex items-center -mb-12 h-56 w-full mx-auto"
+      :style="`background-image: url(${post.imgURL});`"
+    ></div>
     <div class="h-36 flex flex-col justify-end">
       <div
-        class="flex flex-row flex-wrap w-full justify-between items-center z-10 p-2"
+        class="
+          flex flex-row flex-wrap
+          w-full
+          justify-between
+          items-center
+          z-10
+          p-2
+        "
       >
         <h3 class="ml-2 text-dark-purple font-semibold w-full">
           {{ post.title }}
@@ -48,7 +54,7 @@
           {{
             (post.price / 100).toLocaleString("en-US", {
               style: "currency",
-              currency: "USD"
+              currency: "USD",
             })
           }}
         </h3>
@@ -61,11 +67,11 @@
 export default {
   name: "SinglePost",
   props: {
-    post: Object
+    post: Object,
   },
   mounted() {
     console.log(this.post._id);
-  }
+  },
 };
 </script>
 

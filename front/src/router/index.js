@@ -52,9 +52,10 @@ const routes = [
     component: MyListings,
   },
   {
-    path: "/update",
+    path: "/Update/:postId",
     name: "Update",
     component: Update,
+    props: true,
   },
   {
     path: "/watchlist",
