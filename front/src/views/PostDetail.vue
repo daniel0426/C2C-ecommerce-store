@@ -18,7 +18,7 @@
       <AddToWatchlist @add="addToWatchlist" class="hidden md:flex" />
     </div>
     <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
-    <ManageMyListing class="my-4" :postId="post._id"  :post="post" />
+    <ManageMyListing class="my-4" :postId="post._id" :post="post" />
     <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div class="">
@@ -90,16 +90,18 @@ export default {
   },
 
   async mounted() {
-       this.getPost()
+    this.getPost();
   },
 
   methods: {
     async getPost() {
+      console.log("test");
       const response = await fetch(
         "http://localhost:4000/posts/" + this.postId
       );
       const data = await response.json();
       this.post = data;
+      console.log(data, this.post);
     },
     async addToWatchlist() {
       // placeholder function to add to watchlist
