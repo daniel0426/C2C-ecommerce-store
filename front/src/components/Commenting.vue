@@ -72,20 +72,14 @@ export default {
 
   computed: {
     comments() {
-      return this.post.comments;
+      return this.post.comments || [];
     },
   },
 
   props: {
-    // comments: {
-    //   type: Array,
-    //   default: [],
-    // },
     post: {
       type: Object,
-      default: {
-        comments: [],
-      },
+      default: {},
     },
   },
 

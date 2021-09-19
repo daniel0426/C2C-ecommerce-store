@@ -39,12 +39,6 @@ mongoose.connect(
   }
 );
 
-<<<<<<< HEAD
-
-const Post = require("./models/Post");
-
-=======
->>>>>>> 4a7f2f2e56fbd60039cb967fcb6726af3e8048ae
 //Get all posts - Alexis
 
 app.get("/posts", async (req, res, next) => {
@@ -90,7 +84,7 @@ app.post("/posts", async (req, res, next) => {
 
 //Update post - Daniel
 
-app.patch('/posts/:postId', async (req, res, next) => {
+app.patch("/posts/:postId", async (req, res, next) => {
   try {
     const updatePost = {
       title: req.body.title,
@@ -102,30 +96,28 @@ app.patch('/posts/:postId', async (req, res, next) => {
       location: req.body.location,
       paymentType: req.body.paymentType,
       shippingOption: req.body.shippingOption,
-      description: req.body.description
-    }
+      description: req.body.description,
+    };
     const updatedPost = await Post.findByIdAndUpdate(
       req.params.postId,
       updatePost
     );
     res.status(200).json(updatedPost);
-
   } catch (err) {
-      next(err)
+    next(err);
   }
-})
+});
 
 //Delete post - Daniel
-app.delete('/posts/:postId', async (res, res, next)=> {
-  try{
-    console.log('deleted')
+app.delete("/posts/:postId", async (req, res, next) => {
+  try {
+    console.log("deleted");
     const deletePost = await Post.findByIdAndDelete(req.params.postId);
-    res.status(200).json(deletePost)
-  }catch(err){
-    next(err)
+    res.status(200).json(deletePost);
+  } catch (err) {
+    next(err);
   }
-})
-
+});
 
 //Account endpoints
 
