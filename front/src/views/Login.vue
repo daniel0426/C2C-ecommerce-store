@@ -170,7 +170,7 @@ import CreateAccountVue from './CreateAccount.vue'
 import HomeVue from './Home.vue'
 export default {
   name: 'Login',
-  emits: ["loggedin"],
+  
 
   data () {
     return {
