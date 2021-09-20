@@ -2,7 +2,6 @@
   <!-- Whole App Layout/Styling - Alexis -->
   <div class="h-screen flex flex-col w-full bg-cream">
     <NavBar />
-    <a @click="logOut">Log Out</a>
 
     <div class="flex flex-grow overflow-y-auto">
       <div class="max-w-4xl w-full mx-auto px-2">
@@ -23,17 +22,17 @@ export default {
     Footer,
   },
 
-  methods:{
-    async logOut (){
+  methods: {
+    async logOut() {
       const response = await fetch("http://localhost:4000/accounts/logout", {
         credentials: "include",
       });
       const data = await response.json();
       console.log(data);
-    }
+    },
   },
 
-  userLoggedIn(){
+  userLoggedIn() {
     console.log("Login event detected");
   },
 };
