@@ -2,7 +2,7 @@
   <div class="w-full">
     <BackToListings />
     <form
-      @submit.prevent="uploadPost"
+      @submit.prevent="createPost"
       class="mx-auto my-12 box-border p-4 flex flex-col"
     >
       <h1 class="text-bright-purple text-3xl self-center mb-12">
@@ -77,6 +77,8 @@
               required
             />
           </div>
+          <div class="form-group">
+            <label for="">Category</label>
           <select
             name=""
             id=""
@@ -95,12 +97,14 @@
             "
             required
           >
-            <option selected disabled value="Category">Category</option>
             <option value="Mens">Mens</option>
             <option value="Womens">Womens</option>
             <option value="Children">Children</option>
             <option value="Accessories">Accessories</option>
           </select>
+         </div>
+         <div class="form-group">
+           <label for="">Condition</label>
           <select
             name=""
             id=""
@@ -119,15 +123,14 @@
             "
             required
           >
-            <option selected disabled value="Listing Condition">
-              Listing Condition
-            </option>
+           
             <option value="New">New</option>
             <option value="Like New">Like New</option>
             <option value="Good">Good</option>
             <option value="Fair">Fair</option>
             <option value="Poor">Poor</option>
           </select>
+          </div>
           <div class="form-group my-4">
             <label for="">Item Size</label>
             <input
@@ -148,6 +151,8 @@
               required
             />
           </div>
+          <div class="form-group">
+            <label for="">location</label>
           <select
             name=""
             id=""
@@ -166,7 +171,6 @@
             "
             required
           >
-            <option selected disabled value="Location">Location</option>
             <option value="Auckland">Auckland</option>
             <option value="Hamilton">Hamilton</option>
             <option value="Tauranga">Tauranga</option>
@@ -177,6 +181,9 @@
             <option value="Queenstown">Queenstown</option>
             <option value="New Plymouth">New Plymouth</option>
           </select>
+          </div>
+          <div class="form-group">
+            <label for="">Payment Type</label>
           <select
             name=""
             v-model="paymentType"
@@ -195,11 +202,13 @@
             "
             required
           >
-            <option selected disabled value="Payment Type">Payment Type</option>
             <option value="Cash">Cash</option>
             <option value="Debit, Credit card">Debit, Credit card</option>
             <option value="Cash &amp; Card">Cash &amp; Card</option>
           </select>
+          </div>
+          <div class="form-group"> 
+            <label for="">Shipping Option</label>
           <select
             name=""
             v-model="shippingOption"
@@ -218,13 +227,12 @@
             "
             required
           >
-            <option selected disabled value="Shipping Option">
-              Shipping Option
-            </option>
+            
             <option value="NZ Post">NZ Post</option>
             <option value="NZ Couriers">NZ Couriers</option>
             <option value="Pick up">Pick up</option>
           </select>
+          </div>
         </div>
       </div>
       <div class="item-description p-4">
@@ -292,6 +300,7 @@ export default {
       paymentType: null,
       shippingOption: null,
       description: null,
+      comments:null,
       loading: false,
     };
   },
@@ -323,7 +332,7 @@ export default {
   
 
   //upload post to database
-  uploadPost() {
+  createPost() {
     console.log('post')
       let post = {
         title: this.title,
@@ -336,6 +345,7 @@ export default {
         paymentType: this.paymentType,
         shippingOption: this.shippingOption,
         description: this.description,
+        comments : this.comments,
       };
 
       fetch("http://localhost:4000/posts", {
@@ -351,6 +361,14 @@ export default {
 </script>
 
 <style scoped>
+.item-info .form-group {
+  display: flex;
+  align-items: center;
+}
+.item-info .form-group label {
+  flex: 50%;
+}
+
 input {
   cursor: pointer;
 }

@@ -79,6 +79,8 @@
               required
             />
           </div>
+          <div class="form-group">
+            <label for="">Category</label>
           <select
             name=""
             id=""
@@ -97,12 +99,14 @@
             "
             required
           >
-            <option selected disabled value="Category">Category</option>
             <option value="Mens">Mens</option>
             <option value="Womens">Womens</option>
             <option value="Children">Children</option>
             <option value="Accessories">Accessories</option>
           </select>
+          </div>
+           <div class="form-group">
+            <label for="">Condition</label>
           <select
             name=""
             id=""
@@ -121,15 +125,14 @@
             "
             required
           >
-            <option selected disabled value="Listing Condition">
-              Listing Condition
-            </option>
+            
             <option value="New">New</option>
             <option value="Like New">Like New</option>
             <option value="Good">Good</option>
             <option value="Fair">Fair</option>
             <option value="Poor">Poor</option>
           </select>
+          </div>
           <div class="form-group my-4">
             <label for="">Item Size</label>
             <input
@@ -150,6 +153,8 @@
               required
             />
           </div>
+          <div class="form-group">
+            <label for="">Location</label>
           <select
             name=""
             id=""
@@ -168,7 +173,6 @@
             "
             required
           >
-            <option selected disabled value="Location">Location</option>
             <option value="Auckland">Auckland</option>
             <option value="Hamilton">Hamilton</option>
             <option value="Tauranga">Tauranga</option>
@@ -179,6 +183,9 @@
             <option value="Queenstown">Queenstown</option>
             <option value="New Plymouth">New Plymouth</option>
           </select>
+          </div>
+          <div class="form-group">
+            <label for="">Payment Type</label>
           <select
             name=""
             v-model="paymentType"
@@ -197,11 +204,13 @@
             "
             required
           >
-            <option selected disabled value="Payment Type">Payment Type</option>
             <option value="Cash">Cash</option>
             <option value="Debit, Credit card">Debit, Credit card</option>
             <option value="Cash &amp; Card">Cash &amp; Card</option>
           </select>
+          </div>
+          <div class="form-group">
+            <label for="">Shipping Option</label>
           <select
             name=""
             v-model="shippingOption"
@@ -220,13 +229,11 @@
             "
             required
           >
-            <option selected disabled value="Shipping Option">
-              Shipping Option
-            </option>
             <option value="NZ Post">NZ Post</option>
             <option value="NZ Couriers">NZ Couriers</option>
             <option value="Pick up">Pick up</option>
           </select>
+          </div>
         </div>
       </div>
       <div class="item-description p-4">
@@ -293,6 +300,7 @@ export default {
         shippingOption: "",
         description: "",
         loading: false,
+        comments:null,
         post: {
           type: Object,
           default: {},
@@ -303,9 +311,9 @@ export default {
     components: {
       BackToListings,
     },
-     mounted(){
+      mounted(){
       console.log(this.post)
-  },
+    },
     props: {
      
     }, 
@@ -338,43 +346,75 @@ export default {
         }
         this.imgURL = result.url;
       },
-    },
-
     
-
-    async updatePost(){
-      const updatePost = {
-        title: thie.title,
-        price: thie.price,
-        imgURL: thie.imgURL,
-        category: thie.category,
-        condition: thie.condition,
-        size: thie.size,
-        location: thie.location,
-        paymentType: thie.paymentType,
-        shippingOption: thie.shippingOption,
-        description: thie.description
-      }
-      await fetch(`http://localhost:4000/posts/${this.post._id}`, {
-        method:"PATCH", 
-        headers:{
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(updatePost)
-      }).then((res)=> {
-        if(res.status === 200){
-          this.$router.push('/')
+      async updatePost(){
+        const updatePost = {
+          title: this.title,
+          price: this.price,
+          imgURL: this.imgURL,
+          category: this.category,
+          condition: this.condition,
+          size: this.size,
+          location: this.location,
+          paymentType: this.paymentType,
+          shippingOption: this.shippingOption,
+          description: this.description,
+          comments: this.comments,
         }
-      })
+        await fetch(`http://localhost:4000/posts/${this.post._id}`, {
+          method:"PATCH", 
+          headers:{
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(updatePost)
+        }).then((res)=> {
+          if(res.status === 200){
+            this.$router.push('/')
+          }
+        })
+      }
+   
+   
     }
-   
-   
-
     
 
 }
 </script>
 
 <style>
+.item-info .form-group {
+  display: flex;
+  align-items: center;
+}
+.item-info .form-group label {
+  flex: 50%;
+}
+input {
+  cursor: pointer;
+}
+select {
+  cursor: pointer;
+}
 
+.loadingSpinner {
+  margin: 0 auto;
+  padding: 0.5em;
+
+  width: 2.3em;
+  height: 2.3em;
+  border-radius: 50%;
+  border: 2px solid lightgray;
+  border-top: 1.5px solid purple;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

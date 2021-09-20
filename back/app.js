@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Post = require("./models/Post");
 const Account = require("./models/Account");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -71,12 +70,15 @@ app.post("/posts", async (req, res, next) => {
                 const post = new Post({
                         title: req.body.title,
                         price: req.body.price,
+                        category: req.body.category,
                         condition: req.body.condition,
                         imgURL: req.body.imgURL,
                         size: req.body.size,
                         location: req.body.location,
                         paymentType: req.body.paymentType,
                         shippingOption: req.body.shippingOption,
+                        description:req.body.description,
+                        comments: req.body.comments,
                 });
                 const savedPost = await post.save();
                 res.json(savedPost);
@@ -100,6 +102,8 @@ app.patch("/posts/:postId", async (req, res, next) => {
       paymentType: req.body.paymentType,
       shippingOption: req.body.shippingOption,
       description: req.body.description,
+      comments: req.body.comments,
+
     };
     const updatedPost = await Post.findByIdAndUpdate(
       req.params.postId,
