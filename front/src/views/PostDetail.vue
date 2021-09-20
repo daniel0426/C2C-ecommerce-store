@@ -112,11 +112,11 @@ export default {
 
   async mounted() {
     this.getPost();
+    console.log(this.postId)
   },
 
   methods: {
     async getPost() {
-      console.log("test");
       const response = await fetch(
         "http://localhost:4000/posts/" + this.postId
       );

@@ -21,8 +21,11 @@
     </div>
     <div class="object-bottom mt-auto mb-1">
       
+      <router-link 
+      :to="{ name: 'Update', params: { postId: post._id } }"
+       >
       <button
-        @click="moveToUpdate"
+        
         class="
           px-4
           py-2
@@ -36,7 +39,7 @@
       >
         Edit Listing
       </button> 
-      
+      </router-link>
       
       <button
         @click = "showDeleteConfirm"
@@ -119,8 +122,8 @@ export default {
     }
   },
   
-   async mounted(){
-     console.log(this.post);
+    mounted(){
+      console.log(this.post._id)
   },
   
   props: {
@@ -132,9 +135,7 @@ export default {
   },
 
   methods : {
-    moveToUpdate(){
-      this.$router.push({name:"Update", params : {post: this.post}})
-    },
+   
     
     async deletePost(){
       await fetch(`http://localhost:4000/posts/${this.postId}`, {
