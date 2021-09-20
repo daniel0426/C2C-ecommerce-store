@@ -51,8 +51,11 @@
             <h3>Payment: {{ post.paymentType }}</h3>
             <h3>Shipping: {{ post.shippingOption }}</h3>
           </div>
-          <h3 class="text-dark-purple font-semibold text-lg">
-            Description: {{ post.description }}
+          <h3 class="text-dark-purple font-semibold text-lg my-1">
+            Description:
+            <h2 class="text-black font-epilogue font-medium">
+              {{ post.description }}
+            </h2>
           </h3>
         </div>
         <SellerTile />
