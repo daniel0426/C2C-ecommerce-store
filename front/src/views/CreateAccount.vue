@@ -46,7 +46,7 @@
                                 <b><u>Sign in here</u></b></span
                         ><br /><br />
                         <form
-                                @submit.prevent="createSingleuser"
+                                @submit.prevent="createAccountButtonPressed"
                                 class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center"
                                 name="signup-form"
                         >
@@ -58,7 +58,7 @@
                                         placeholder="FIRST NAME"
                                 /><br />
                                 <span
-                                        class="error text-red-600"
+                                        class="error text-red-600 text-xs text-bold"
                                         v-if="msg.fname"
                                         >{{ msg.fname }}</span
                                 ><br />
@@ -70,7 +70,7 @@
                                         placeholder="LAST NAME"
                                 /><br />
                                 <span
-                                        class="error text-red-600"
+                                        class="error text-red-600 text-xs text-bold"
                                         v-if="msg.lname"
                                         >{{ msg.lname }}</span
                                 ><br />
@@ -82,19 +82,19 @@
                                         placeholder="DATE OF BIRTH"
                                 /><br />
                                 <span
-                                        class="error text-red-600"
+                                        class="error text-red-600 text-xs text-bold"
                                         v-if="msg.dateofbirth"
                                         >{{ msg.dateofbirth }}</span
                                 ><br />
                                 <input
-                                        type="email"
+                                        type="text"
                                         class="email bg-white text-purple-grey placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1"
                                         name="email"
                                         v-model="account.email"
                                         placeholder="EMAIL  ADDRESS"
                                 /><br />
                                 <span
-                                        class="error text-red-600"
+                                        class="error text-red-600 text-xs text-bold"
                                         v-if="msg.email"
                                         >{{ msg.email }}</span
                                 ><br />
@@ -106,7 +106,7 @@
                                         placeholder="PASSWORD"
                                 /><br />
                                 <span
-                                        class="error text-red-600"
+                                        class="error text-red-600 text-xs text-bold"
                                         v-if="msg.password"
                                         >{{ msg.password }}</span
                                 ><br />
@@ -118,16 +118,14 @@
                                         placeholder="CONFIRM PASSWORD"
                                 /><br />
                                 <span
-                                        class="error-confirm-password text-red-600"
+                                        class="error-confirm-password text-red-600 text-xs text-bold"
                                         v-if="msg.confirmpass"
                                         >{{ msg.confirmpass }}</span
                                 ><br /><br />
                                 <input type="checkbox" name="agree" />
                                 I agree to the terms and conditions of use<br />
                                 <button
-                                        @click.prevent="
-                                                createAccountButtonPressed
-                                        "
+                                        
                                         type="submit"
                                         class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream"
                                 >
@@ -170,71 +168,95 @@ export default {
 
         methods: {
                 createAccountButtonPressed(e) {
+
+                        let error = 0;
+
                         if (this.account.fname == null) {
                                 this.msg["fname"] =
-                                        "Please enter your First Name";
+                                        "First name required !";
+                                        error += 1;
                         } else {
                                 this.msg["fname"] = "";
+                                error = 0;
                         }
 
                         if (this.account.lname == null) {
                                 this.msg["lname"] =
-                                        "Please enter your Last Name";
+                                        "Last name required !";
+                                        error += 1;
                         } else {
                                 this.msg["lname"] = "";
+                                error = 0;
                         }
 
                         if (this.account.dateofbirth == null) {
                                 this.msg["dateofbirth"] =
-                                        "Please enter your Date Of Birth";
+                                        "Please enter your Date Of Birth DD/MM/YYYY !";
+                                        error += 1;
                         } else {
                                 this.msg["dateofbirth"] = "";
+                                error = 0;
                         }
 
                         if (this.account.email == null) {
                                 this.msg["email"] =
                                         "Please Enter your Email Address";
+                                        error += 1;
                         } else {
                                 if (!this.validEmail(this.account.email)) {
-                                        this.msg["email"] = "Invalid Email";
+                                        this.msg["email"] = "Invalid Email !  try your.name@email.com ";
+                                        error += 1;
                                 } else {
                                         this.msg["email"] = "";
+                                        error = 0;
                                 }
                         }
 
                         if (this.account.password == null) {
                                 this.msg["password"] =
-                                        "Please enter your password";
+                                        "A password is required !";
+                                        error += 1;
                         } else {
                                 if (this.account.password.length < 8) {
                                         this.msg["password"] =
-                                                "password must be atleast 8 characters long";
+                                                "Password must be atlease 8 characters long with no spaces";
+                                                error += 1;
                                 } else {
                                         this.msg["password"] = "";
-                                }
+                                        error = 0;
+                                }                               
                         }
 
                         if (this.account.confirmpassword == null) {
                                 this.msg["confirmpass"] =
                                         "Please confirm your  Password";
+                                        error += 1
                         } else {
                                 if (
                                         this.account.password !==
                                         this.account.confirmpassword
                                 ) {
                                         this.msg["confirmpass"] =
-                                                "Passwords do not match !";
+                                                "Passwords do not match, please check and try again !";
+                                                error += 1;
                                 } else {
                                         this.msg["confirmpass"] =
                                                 "Passwords match";
+                                                error = 0;
                                 }
                         }
+
+                        if (error < 1) {
+                                this.createSingleAccount();
+                        }                       
                 },
 
                 validEmail(email) {
                         var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                         return re.test(email);
                 },
+
+               
 
                 goBack() {
                         return this.$router.push(HomeVue);
