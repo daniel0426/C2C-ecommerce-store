@@ -3,8 +3,13 @@
 <template>
   <div v-if="post" class="w-full">
     <BackToListings />
-    <form @submit.prevent="updatePost" class="mx-auto my-12 box-border p-4 flex flex-col">
-      <h1 class="text-bright-purple text-3xl self-center mb-12">Update Listings</h1>
+    <form
+      @submit.prevent="updatePost"
+      class="mx-auto my-12 box-border p-4 flex flex-col"
+    >
+      <h1 class="text-bright-purple text-3xl self-center mb-12">
+        Update Listings
+      </h1>
       <div class="flex-cols lg:flex">
         <div class="item-image flex-1 p-4 mt-4 border-2 flex flex-col">
           <div class="image flex-1">
@@ -22,8 +27,16 @@
           <button
             v-else
             @click="imageBtnClick"
-            class="border-2 border-bright-purple rounded-lg cursor-pointer w-full p-2"
-          >Upload Image</button>
+            class="
+              border-2 border-bright-purple
+              rounded-lg
+              cursor-pointer
+              w-full
+              p-2
+            "
+          >
+            Upload Image
+          </button>
         </div>
         <div class="item-info flex-1 flex flex-col p-4">
           <div class="form-group my-2">
@@ -31,7 +44,18 @@
             <input
               type="text"
               v-model="post.title"
-              class="w-full mt-2 block py-1 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                w-full
+                mt-2
+                block
+                py-1
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             />
           </div>
@@ -40,7 +64,18 @@
             <input
               type="text"
               v-model="post.price"
-              class="w-full mt-2 block py-1 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                w-full
+                mt-2
+                block
+                py-1
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             />
           </div>
@@ -50,7 +85,18 @@
               name
               id
               v-model="post.category"
-              class="my-2 w-full block py-2 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             >
               <option value="Mens">Mens</option>
@@ -65,7 +111,18 @@
               name
               id
               v-model="post.condition"
-              class="my-2 w-full block py-2 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             >
               <option value="New">New</option>
@@ -80,7 +137,18 @@
             <input
               type="text"
               v-model="post.size"
-              class="mt-2 w-full block py-1 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                mt-2
+                w-full
+                block
+                py-1
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             />
           </div>
@@ -90,7 +158,18 @@
               name
               id
               v-model="post.location"
-              class="my-2 w-full block py-2 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             >
               <option value="Auckland">Auckland</option>
@@ -110,7 +189,18 @@
               name
               v-model="post.paymentType"
               id
-              class="my-2 w-full block py-2 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             >
               <option value="Cash">Cash</option>
@@ -124,7 +214,18 @@
               name
               v-model="post.shippingOption"
               id
-              class="my-2 w-full block py-2 px-4 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
               required
             >
               <option value="NZ Post">NZ Post</option>
@@ -139,7 +240,15 @@
           <label for>Description</label>
           <textarea
             v-model="post.description"
-            class="my-2 p-2 border-2 outline-none border-light-purple rounded-lg text-gray-700"
+            class="
+              my-2
+              p-2
+              border-2
+              outline-none
+              border-light-purple
+              rounded-lg
+              text-gray-700
+            "
             cols="10"
             rows="5"
             placeholder="Please enter a description for this listing. Character limit of 500 characters applies."
@@ -149,8 +258,23 @@
       </div>
       <button
         type="submit"
-        class="w-40 self-end mr-4 bg-bright-purple text-white text-lg p-2 rounded-md cursor-pointer hover:scale-105 transition transform duration-200"
-      >Update Listing</button>
+        class="
+          w-40
+          self-end
+          mr-4
+          bg-bright-purple
+          text-white text-lg
+          p-2
+          rounded-md
+          cursor-pointer
+          hover:scale-105
+          transition
+          transform
+          duration-200
+        "
+      >
+        Update Listing
+      </button>
     </form>
   </div>
 </template>
@@ -161,19 +285,18 @@ export default {
   name: "PostUpdate",
   data() {
     return {
-      post :null,
+      post: null,
       loading: false,
     };
   },
   components: {
-    BackToListings
+    BackToListings,
   },
-   mounted() {
+  mounted() {
     this.getPostInfo();
-
   },
   props: {
-    postId: String
+    postId: String,
   },
 
   methods: {
@@ -200,7 +323,7 @@ export default {
       data.append("upload_preset", "vwodzywe");
       const response = await fetch(cloudinaryURL, {
         method: "POST",
-        body: data
+        body: data,
       });
       const result = await response.json();
       if (result) {
@@ -210,20 +333,21 @@ export default {
     },
 
     async updatePost() {
-      console.log('hello')
+      console.log("hello");
       await fetch(`http://localhost:4000/posts/${this.post._id}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(this.post)
-      }).then(res => {
+        body: JSON.stringify(this.post),
+        credentials: "include",
+      }).then((res) => {
         if (res.status === 200) {
           this.$router.push("/");
         }
-        });
-    } 
-  }
+      });
+    },
+  },
 };
 </script>
 
