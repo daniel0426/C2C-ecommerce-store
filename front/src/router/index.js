@@ -52,7 +52,7 @@ const routes = [
     component: MyListings,
   },
   {
-    path: "/Update/:postId",
+    path: "/Update",
     name: "Update",
     component: Update,
     props: true,
