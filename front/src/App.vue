@@ -1,11 +1,15 @@
 <template>
   <!-- Whole App Layout/Styling - Alexis -->
   <div class="h-screen flex flex-col w-full bg-cream">
-    <NavBar />
+    <NavBar v-bind:user="user" />
 
     <div class="flex flex-grow overflow-y-auto">
       <div class="max-w-4xl w-full mx-auto px-2">
-        <router-view @loggedin="userLoggedIn" class="h-full" />
+        <router-view
+          v-bind:user="user"
+          @loggedIn="userLoggedIn"
+          class="h-full"
+        />
       </div>
     </div>
     <Footer />
@@ -22,6 +26,16 @@ export default {
     Footer,
   },
 
+  data() {
+    return {
+      user: null,
+    };
+  },
+
+  mounted() {
+    this.user = JSON.parse(localStorage.getItem("user"));
+  },
+
   methods: {
     async logOut() {
       const response = await fetch("http://localhost:4000/accounts/logout", {
@@ -30,10 +44,10 @@ export default {
       const data = await response.json();
       console.log(data);
     },
-  },
-
-  userLoggedIn() {
-    console.log("Login event detected");
+    userLoggedIn(user) {
+      localStorage.setItem("user", JSON.stringify(user));
+      this.user = user;
+    },
   },
 };
 </script>

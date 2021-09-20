@@ -1,8 +1,10 @@
 <template>
   <!-- Home Layout/Styling - Alexis -->
   <div class="">
-    <div v-if="true" class="my-10 font-epilogue space-y-5 text-dark-purple">
-      <h2 class="text-4xl font-bold">Welcome, User Name!</h2>
+    <div v-if="user" class="my-10 font-epilogue space-y-5 text-dark-purple">
+      <h2 class="text-4xl font-bold">
+        Welcome, {{ user.fname }} {{ user.lname }}!
+      </h2>
       <h3 class="font-semibold text-2xl">What would you like to do today?</h3>
     </div>
 
@@ -12,11 +14,6 @@
         See our current listings below, or create/login to your ThriftMe Account
         for the full user experience.
       </h3>
-    </div>
-
-    <div class="flex flex-col">
-      <router-link to="/CreateAccount">Create Account </router-link>
-      <router-link to="/Login"> Login </router-link>
     </div>
 
     <h2 class="font-semibold text-2xl text-dark-purple font-epilogue">
@@ -59,6 +56,11 @@ import CategoryFilter from "../components/CategoryFilter.vue";
 
 export default {
   name: "Home",
+
+  props: {
+    user: Object,
+  },
+
   components: {
     SinglePost,
     SearchFilter,
@@ -71,6 +73,7 @@ export default {
   },
   mounted() {
     this.getPosts();
+    console.log("User:", this.user);
   },
   methods: {
     async getPosts() {
