@@ -12,79 +12,76 @@ const cors = require("cors");
 app.use(cors({ credentials: true, origin: "http://localhost:8080" }));
 
 app.use(
-        express.urlencoded({
-                extended: true,
-        })
+  express.urlencoded({
+    extended: true,
+  })
 );
 app.use(express.json());
 app.use(morgan("dev"));
 
 const DB =
-        "mongodb+srv://daniel0426:wjdgudwls12!@cluster0.4kcct.mongodb.net/ecommerce?retryWrites=true&w=majority";
+  "mongodb+srv://daniel0426:wjdgudwls12!@cluster0.4kcct.mongodb.net/ecommerce?retryWrites=true&w=majority";
 const PORT = 4000;
 
 mongoose.connect(
-        DB,
-        {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-        },
-        () => {
-                console.log("connected to DB");
+  DB,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  () => {
+    console.log("connected to DB");
 
-                app.listen(PORT, () => {
-                        console.log("listening on port 4000");
-                });
-        }
+    app.listen(PORT, () => {
+      console.log("listening on port 4000");
+    });
+  }
 );
-
-
-const Post = require("./models/Post");
 
 //Get all posts - Alexis
 
 app.get("/posts", async (req, res, next) => {
-        try {
-                const posts = await Post.find();
-                res.status(200).json(posts);
-        } catch (err) {
-                next(err);
-        }
+  try {
+    const posts = await Post.find();
+    res.status(200).json(posts);
+  } catch (err) {
+    next(err);
+  }
 });
 
 //Get specific post - Alexis
 
 app.get("/posts/:postId", async (req, res, next) => {
-        try {
-                const post = await Post.findById(req.params.postId);
-                res.status(200).json(post);
-        } catch (err) {
-                next(err);
-        }
+  try {
+    const post = await Post.findById(req.params.postId);
+    res.status(200).json(post);
+  } catch (err) {
+    next(err);
+  }
 });
 
 //Create new post - Daniel
 
 app.post("/posts", async (req, res, next) => {
-        try {
-                const post = new Post({
-                        title: req.body.title,
-                        price: req.body.price,
-                        category: req.body.category,
-                        condition: req.body.condition,
-                        imgURL: req.body.imgURL,
-                        size: req.body.size,
-                        location: req.body.location,
-                        paymentType: req.body.paymentType,
-                        shippingOption: req.body.shippingOption,
-                        description:req.body.description,
-                        comments: req.body.comments,
-                });
-                const savedPost = await post.save();
-                res.json(savedPost);
-        } catch (err) {
-                next(err);
-        }
+  try {
+    const post = new Post({
+      title: req.body.title,
+      price: req.body.price,
+      category: req.body.category,
+      condition: req.body.condition,
+      imgURL: req.body.imgURL,
+      size: req.body.size,
+      location: req.body.location,
+      paymentType: req.body.paymentType,
+      shippingOption: req.body.shippingOption,
+      description: req.body.description,
+      comments: [],
+    });
+    const savedPost = await post.save();
+    res.json(savedPost);
+  } catch (err) {
+    next(err);
+  }
 });
 
 //Update post - Daniel
@@ -102,8 +99,7 @@ app.patch("/posts/:postId", async (req, res, next) => {
       paymentType: req.body.paymentType,
       shippingOption: req.body.shippingOption,
       description: req.body.description,
-      comments: req.body.comments,
-
+      comments: [],
     };
     const updatedPost = await Post.findByIdAndUpdate(
       req.params.postId,
@@ -129,92 +125,87 @@ app.delete("/posts/:postId", async (req, res, next) => {
 //Account endpoints
 
 app.post("/accounts/create", async (req, res) => {
-        const existingAccount = await Account.findOne({
-                email: req.body.email,
+  const existingAccount = await Account.findOne({
+    email: req.body.email,
+  });
+  if (existingAccount) {
+    return res.status(409).json({ message: "Email Already Exists" });
+  } else {
+    bcrypt.hash(req.body.password, 10, async (err, hash) => {
+      if (err) {
+        return res.status(550).json({ error: err });
+      } else {
+        const account = new Account({
+          fname: req.body.fname,
+          lname: req.body.lname,
+          dateofbirth: req.body.dateofbirth,
+          email: req.body.email,
+          password: hash,
         });
-        if (existingAccount) {
-                return res
-                        .status(409)
-                        .json({ message: "Email Already Exists" });
-        } else {
-                bcrypt.hash(req.body.password, 10, async (err, hash) => {
-                        if (err) {
-                                return res.status(550).json({ error: err });
-                        } else {
-                                const account = new Account({
-                                        
-                                        fname: req.body.fname,
-                                        lname: req.body.lname,
-                                        dateofbirth: req.body.dateofbirth,
-                                        email: req.body.email,
-                                        password: hash,
-                                });
-                                const savedAccount = await account.save();
-                                res.json(savedAccount);
-                        }
-                });
-        
-                                                
-        }
+        const savedAccount = await account.save();
+        res.json(savedAccount);
+      }
+    });
+  }
 });
 app.post("/accounts/login", async (req, res) => {
-        const existingAccount = await Account.findOne({
-                email: req.body.email,
-        }); // try to retrievve the user matching the supplies email
-        if (!existingAccount) {
-                //if the user doesn't exist
-                return res.status(401).json({
-                        message: "Authorization Failed",
-                }); // send back error to client and due to return, exit function
+  const existingAccount = await Account.findOne({
+    email: req.body.email,
+  }); // try to retrievve the user matching the supplies email
+  if (!existingAccount) {
+    //if the user doesn't exist
+    return res.status(401).json({
+      message: "Authorization Failed",
+    }); // send back error to client and due to return, exit function
+  } else {
+    // otherwise if the user does exist
+    bcrypt.compare(
+      req.body.password,
+      existingAccount.password,
+      (err, result) => {
+        // compare supplied password with the encrypted account
+        if (err) {
+          // if the comparison fails
+          return res.status(401).json({
+            message: "Authorization Failed",
+          }); // send back error message and due to return, exit function
         } else {
-                // otherwise if the user does exist
-                bcrypt.compare(
-                        req.body.password,
-                        existingAccount.password,
-                        (err, result) => {
-                                // compare supplied password with the encrypted account
-                                if (err) {
-                                        // if the comparison fails
-                                        return res.status(401).json({
-                                                message: "Authorization Failed",
-                                        }); // send back error message and due to return, exit function
-                                } else {
-                                        // otherwise if the comparison succeeds
-                                        if (result) {
-                                                //check if the result of the comparison is that the password is correct (result === true)
-                                                // create json web token
-                                                const lifespan = 1 * 60 * 60;
-                                                const token = jwt.sign(
-                                                        {
-                                                                id: existingAccount._id,
-                                                                email: existingAccount.email,
-                                                        },
-                                                        "monkeyPuzzle",
-                                                        {
-                                                                expiresIn: lifespan,
-                                                        }
-                                                ); //expressed in seconds
-                                                res.cookie("jwt", token, {
-                                                        maxAge: lifespan * 1000,
-                                                        httpOnly: true,
-                                                }); //Expressed in seconds
-                                                return res.status(200).json({
-                                                        email: existingAccount.email,
-                                                });
-                                        } else {
-                                                return res.status(401).json({
-                                                        message: "Authorization Failed",
-                                                }); // send back error to client and due to return, exit function
-                                        }
-                                }
-                        }
-                );
+          // otherwise if the comparison succeeds
+          if (result) {
+            //check if the result of the comparison is that the password is correct (result === true)
+            // create json web token
+            const lifespan = 1 * 60 * 60;
+            const token = jwt.sign(
+              {
+                id: existingAccount._id,
+                email: existingAccount.email,
+              },
+              "monkeyPuzzle",
+              {
+                expiresIn: lifespan,
+              }
+            ); //expressed in seconds
+            res.cookie("jwt", token, {
+              maxAge: lifespan * 1000,
+              httpOnly: true,
+            }); //Expressed in seconds
+            return res.status(200).json({
+              email: existingAccount.email,
+            });
+          } else {
+            return res.status(401).json({
+              message: "Authorization Failed",
+            }); // send back error to client and due to return, exit function
+          }
         }
+      }
+    );
+  }
 });
 
 app.get("/accounts/logout", async (req, res) => {
-        res.cookie("jwt", "", { maxAge: 1 });
-        res.json({ message: "logged out " });
+  res.cookie("jwt", "", { maxAge: 1 });
+  res.json({ message: "logged out " });
 });
 
 //  ######   #######  ##     ## ##     ## ######## ##    ## ########  ######
@@ -228,8 +219,8 @@ app.get("/accounts/logout", async (req, res) => {
 //Get All Comments - Alexis
 
 app.get("/posts/:postId/comments", async (req, res) => {
-        const post = await Post.findById(req.params.postId);
-        res.status(200).json(post.comments);
+  const post = await Post.findById(req.params.postId);
+  res.status(200).json(post.comments);
 });
 
 //Get Specific Comment - Alexis
@@ -243,23 +234,24 @@ app.get("/posts/:postId/comments", async (req, res) => {
 //Delete Comments - Alexis
 
 app.delete("/posts/:postId/comments/:commentId", async (req, res) => {
-        const post = await Post.findById(req.params.postId);
-        post.comments.pull(req.params.commentId);
-        const savedPost = await post.save();
-        res.status(200).send(savedPost);
+  const post = await Post.findById(req.params.postId);
+  post.comments.pull(req.params.commentId);
+  const savedPost = await post.save();
+  res.status(200).send(savedPost);
 });
 
 //Post Comment - Alexis
 
 app.post("/posts/:postId/comments", async (req, res, next) => {
-        try {
-                const post = await Post.findById(req.params.postId);
-                post.comments.push({
-                        text: req.body.text,
-                });
-                const savedPost = await post.save();
-                res.status(200).send(savedPost);
-        } catch (err) {
-                next(err);
-        }
+  try {
+    const post = await Post.findById(req.params.postId);
+    console.log(post);
+    post.comments.push({
+      text: req.body.text,
+    });
+    const savedPost = await post.save();
+    res.status(200).send(savedPost);
+  } catch (err) {
+    next(err);
+  }
 });
