@@ -189,7 +189,6 @@ export default {
       );
       const data = await response.json();
       this.post = data;
-      console.log(this.post)
     },
 
     //upload image logic

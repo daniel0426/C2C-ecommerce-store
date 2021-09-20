@@ -94,7 +94,6 @@ export default {
 
   async mounted() {
     this.getPost();
-    console.log(this.postId)
   },
 
   methods: {
@@ -104,7 +103,6 @@ export default {
       );
       const data = await response.json();
       this.post = data;
-      console.log(data, this.post);
     },
     async addToWatchlist() {
       // placeholder function to add to watchlist

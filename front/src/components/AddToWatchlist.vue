@@ -1,6 +1,6 @@
 <template>
   <!-- Add to Watchlist Component - Alexis -->
-  <div class="flex flex-row items-center justify-end" @click="$emit('add')">
+  <div class="flex cursor-pointer flex-row items-center justify-end" @click="$emit('add')">
     <h3 class="text-base md:text-xl font-semibold text-dark-purple">
       Add to Watchlist
     </h3>
