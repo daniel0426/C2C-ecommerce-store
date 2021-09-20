@@ -79,7 +79,7 @@
               ThriftMe
             </router-link>
           </div>
-          <div v-if="true" class="flex flex-col space-y-4">
+          <div v-if="user" class="flex flex-col space-y-4">
             <router-link to="/CreateListing"> List Item </router-link>
             <router-link to="/MyListings"> My Listings </router-link>
             <router-link to="/Watchlist"> Watchlist </router-link>
@@ -101,7 +101,7 @@
               </svg>
               My Account
             </router-link>
-            <div class="flex justify-right">
+            <button class="flex flex-end font-semibold" @click="logOut">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6 mr-2"
@@ -117,7 +117,7 @@
                 />
               </svg>
               Log Out
-            </div>
+            </button>
           </div>
           <div class="flex flex-col space-y-4" v-else>
             <router-link to="/Login"> Log In</router-link>
@@ -140,7 +140,7 @@
           lg:space-x-8
           font-semibold
         "
-        v-if="true"
+        v-if="user"
       >
         <router-link to="/CreateListing"> List Item </router-link>
         <router-link to="/MyListings"> My Listings </router-link>
@@ -162,10 +162,10 @@
             />
           </svg>
         </router-link>
-        <div class="flex" @click="logOut">
+        <button class="flex" @click="logOut">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 ml-1"
+            class="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -177,7 +177,7 @@
               d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <div
         class="
@@ -207,6 +207,10 @@ import vClickOutside from "click-outside-vue3";
 export default {
   name: "NavBar",
 
+  props: {
+    user: Object,
+  },
+
   directives: {
     clickOutside: vClickOutside.directive,
   },
@@ -229,7 +233,10 @@ export default {
         credentials: "include",
       });
       const data = await response.json();
+
+      localStorage.removeItem("user");
       console.log(data);
+      location.reload();
     },
   },
 };

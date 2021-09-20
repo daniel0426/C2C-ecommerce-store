@@ -191,7 +191,10 @@ app.post("/accounts/login", async (req, res) => {
               httpOnly: true,
             }); //Expressed in seconds
             return res.status(200).json({
+              id: existingAccount._id,
               email: existingAccount.email,
+              fname: existingAccount.fname,
+              lname: existingAccount.lname,
             });
           } else {
             return res.status(401).json({

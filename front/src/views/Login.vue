@@ -14,7 +14,8 @@
       bg-cream
       sm:px-5
       lg:px-10
-    " >
+    "
+  >
     Back to Home</span
   >
   <br />
@@ -166,45 +167,52 @@
 </template>
 
 <script>
-import CreateAccountVue from './CreateAccount.vue'
-import HomeVue from './Home.vue'
+import CreateAccountVue from "./CreateAccount.vue";
+import HomeVue from "./Home.vue";
 export default {
-  name: 'Login',
-  
+  name: "Login",
 
-  data () {
+  emits: ["loggedIn"],
+
+  data() {
     return {
       user: {
         email: null,
         password: null,
-      }
-    }
+      },
+    };
   },
 
   methods: {
-    GoBack () {
-      return this.$router.push(HomeVue)
+    GoBack() {
+      return this.$router.push(HomeVue);
     },
 
-    GoSignup () {
-      return this.$router.push(CreateAccountVue)
+    GoSignup() {
+      return this.$router.push(CreateAccountVue);
     },
 
-    async logUserIn() {  
-      const response = await fetch("http://localhost:4000/accounts/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(this.user),
-        credentials: "include",
-      });
-      const data = await response.json();
-      window.localStorage.setItem("email", data.email)
-      this.$emit("loggedin");
-      console.log("User Logged In");
-      return this.$router.push(HomeVue)
+    async logUserIn() {
+      try {
+        const response = await fetch("http://localhost:4000/accounts/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.user),
+          credentials: "include",
+        });
+        let user = await response.json();
+
+        console.log("Login event detected", user);
+
+        this.$emit("loggedIn", user);
+
+        this.$router.push(HomeVue);
+      } catch (err) {
+        console.log(err.response);
+      }
     },
-  }
-}
+  },
+};
 </script>
 
 <style></style>

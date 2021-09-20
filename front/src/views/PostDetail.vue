@@ -15,10 +15,14 @@
       <BackToListings class="" />
 
       <!-- ADD TO WATCHLIST WILL APPEAR/DISAPPEAR BASED ON USER -->
-      <AddToWatchlist @add="addToWatchlist" class="hidden md:flex" />
+      <AddToWatchlist
+        @add="addToWatchlist"
+        class="hidden md:flex"
+        v-if="user"
+      />
     </div>
     <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
-    <ManageMyListing class="my-4" :postId="post._id" :post="post" />
+    <ManageMyListing class="my-4" :postId="post._id" :post="post" v-if="user" />
     <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div class="">
@@ -61,7 +65,20 @@
         <SellerTile />
       </div>
     </div>
-    <Commenting class="mb-8" :post="post" @refresh="getPost" />
+    <Commenting class="mb-8" :post="post" @refresh="getPost" v-if="user" />
+    <div v-else>
+      <h2
+        class="
+          text-center
+          font-medium
+          my-4
+          text-xl text-dark-purple text-opacity-70
+          font-epilogue
+        "
+      >
+        Please log in to view and leave comments on this listing.
+      </h2>
+    </div>
   </div>
 </template>
 
@@ -84,6 +101,7 @@ export default {
 
   props: {
     postId: String,
+    user: Object,
   },
 
   data() {
