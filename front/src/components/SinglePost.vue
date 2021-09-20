@@ -17,7 +17,7 @@
     "
   >
     <div
-      class="flex items-center -mb-12 h-56 w-full mx-auto"
+      class="flex items-center -mb-12 h-56 w-full mx-auto bg-cover bg-center "
       :style="`background-image: url(${post.imgURL});`"
     ></div>
     <div class="h-36 flex flex-col justify-end">
@@ -34,6 +34,7 @@
         <h3 class="ml-2 text-dark-purple font-semibold w-full">
           {{ post.title }}
         </h3>
+        
         <button
           type="button"
           class="

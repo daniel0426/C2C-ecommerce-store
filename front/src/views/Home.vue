@@ -20,9 +20,9 @@
       Browse:
     </h2>
 
-    <div class="space-y-4 mb-4">
+    <div class=" mb-4">
       <SearchFilter />
-      <CategoryFilter />
+      <CategoryFilter class="my-12"/>
     </div>
 
     <div

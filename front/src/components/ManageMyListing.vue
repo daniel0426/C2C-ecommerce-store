@@ -22,7 +22,7 @@
     <div class="object-bottom mt-auto mb-1">
       
       <router-link 
-      :to="{ name: 'Update', params: { postId: post._id } }"
+      :to="{ name: 'PostUpdate', params: { postId: post._id } }"
        >
       <button
         
@@ -58,7 +58,7 @@
     </div>
 
      <!-- delete Confirm message - Daniel -->
-    <div v-if="deleteConfirmMessage" class="confirmdelete border-2 rounded-xl border-light-purple absolute top-40 p-6 w-1/3 bg-gray-200 text-bright-purple flex flex-col justify-center	items-center	 ">
+    <div v-if="deleteConfirmMessage" class="confirmdelete left-1/2 border-2 transform -translate-x-1/2  left rounded-xl border-light-purple absolute top-40 p-6 lg:w-1/3 w-2/3 bg-gray-200 text-bright-purple flex flex-col justify-center	items-center	 ">
         <h1 
         class="
         text-2xl 
@@ -67,7 +67,7 @@
         ">
         Delete Listing
         </h1>
-        <p class="w-2/3 mb-8">
+        <p class="w-2/3 mb-8 min-w-min">
           Are you sure you wish to delete this
         listing? Users will no longer be able to view
         it, and this item will be removed from your 

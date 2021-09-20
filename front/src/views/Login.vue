@@ -1,4 +1,5 @@
 <template>
+<div>
   <span
     @Click="GoBack"
     class="
@@ -163,6 +164,7 @@
         >New to Thriftme <b><u>Create Account Here</u></b></span
       ><br />
     </div>
+  </div>
   </div>
 </template>
 

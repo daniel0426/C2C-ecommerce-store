@@ -157,9 +157,8 @@
 
 <script>
 import BackToListings from "../components/BackToListings";
-import ImageUploader from "../../service/imageInput";
 export default {
-  name: "Update",
+  name: "PostUpdate",
   data() {
     return {
       post :null,

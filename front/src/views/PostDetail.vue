@@ -15,11 +15,14 @@
       <BackToListings class="" />
 
       <!-- ADD TO WATCHLIST WILL APPEAR/DISAPPEAR BASED ON USER -->
+     
       <AddToWatchlist
         @add="addToWatchlist"
         class="hidden md:flex"
+        :post="post"
         v-if="user"
       />
+     
     </div>
     <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
     <ManageMyListing class="my-4" :postId="post._id" :post="post" v-if="user" />
@@ -90,7 +93,7 @@ import Commenting from "../components/Commenting.vue";
 import ManageMyListing from "../components/ManageMyListing.vue";
 export default {
   name: "PostDetail",
-
+  
   components: {
     AddToWatchlist,
     BackToListings,
@@ -102,6 +105,7 @@ export default {
   props: {
     postId: String,
     user: Object,
+    
   },
 
   data() {
