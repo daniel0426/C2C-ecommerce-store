@@ -39,6 +39,30 @@ mongoose.connect(
   }
 );
 
+// ---------------- MIDDLEWARE ------------------ //
+
+app.use(cookieParser());
+
+const authUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token) {
+    console.log("User not logged in");
+    return res
+      .status(401)
+      .json({ message: "Access denied - User not logged in" });
+  } else {
+    jwt.verify(token, "monkeyPuzzle", (err, decodedToken) => {
+      if (err) {
+        console.log(err);
+        return res.status(401).json(err.message);
+      } else {
+        console.log(decodedToken);
+        next();
+      }
+    });
+  }
+};
+
 //Get all posts - Alexis
 
 app.get("/posts", async (req, res, next) => {
@@ -63,7 +87,7 @@ app.get("/posts/:postId", async (req, res, next) => {
 
 //Create new post - Daniel
 
-app.post("/posts", async (req, res, next) => {
+app.post("/posts", authUser, async (req, res, next) => {
   try {
     const post = new Post({
       title: req.body.title,
@@ -87,7 +111,7 @@ app.post("/posts", async (req, res, next) => {
 
 //Update post - Daniel
 
-app.patch("/posts/:postId", async (req, res, next) => {
+app.patch("/posts/:postId", authUser, async (req, res, next) => {
   try {
     const updatePost = {
       title: req.body.title,
@@ -113,13 +137,15 @@ app.patch("/posts/:postId", async (req, res, next) => {
 });
 
 //Delete post - Daniel
-app.delete("/posts/:postId", async (req, res, next) => {
-  try {
-    console.log("deleted");
-    const deletePost = await Post.findByIdAndDelete(req.params.postId);
-    res.status(200).json(deletePost);
-  } catch (err) {
-    next(err);
+app.delete("/posts/:postId", authUser, async (req, res, next) => {
+  if (user === post.author.id) {
+    try {
+      console.log("deleted");
+      const deletePost = await Post.findByIdAndDelete(req.params.postId);
+      res.status(200).json(deletePost);
+    } catch (err) {
+      next(err);
+    }
   }
 });
 

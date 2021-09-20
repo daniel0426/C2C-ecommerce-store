@@ -79,57 +79,56 @@
           </div>
           <div class="form-group">
             <label for="">Category</label>
-          <select
-            name=""
-            id=""
-            v-model="category"
-            class="
-              my-2
-              w-full
-              block
-              py-2
-              px-4
-              border-2
-              outline-none
-              border-light-purple
-              rounded-lg
-              text-gray-700
-            "
-            required
-          >
-            <option value="Mens">Mens</option>
-            <option value="Womens">Womens</option>
-            <option value="Children">Children</option>
-            <option value="Accessories">Accessories</option>
-          </select>
-         </div>
-         <div class="form-group">
-           <label for="">Condition</label>
-          <select
-            name=""
-            id=""
-            v-model="condition"
-            class="
-              my-2
-              w-full
-              block
-              py-2
-              px-4
-              border-2
-              outline-none
-              border-light-purple
-              rounded-lg
-              text-gray-700
-            "
-            required
-          >
-           
-            <option value="New">New</option>
-            <option value="Like New">Like New</option>
-            <option value="Good">Good</option>
-            <option value="Fair">Fair</option>
-            <option value="Poor">Poor</option>
-          </select>
+            <select
+              name=""
+              id=""
+              v-model="category"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
+              required
+            >
+              <option value="Mens">Mens</option>
+              <option value="Womens">Womens</option>
+              <option value="Children">Children</option>
+              <option value="Accessories">Accessories</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Condition</label>
+            <select
+              name=""
+              id=""
+              v-model="condition"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
+              required
+            >
+              <option value="New">New</option>
+              <option value="Like New">Like New</option>
+              <option value="Good">Good</option>
+              <option value="Fair">Fair</option>
+              <option value="Poor">Poor</option>
+            </select>
           </div>
           <div class="form-group my-4">
             <label for="">Item Size</label>
@@ -153,85 +152,84 @@
           </div>
           <div class="form-group">
             <label for="">location</label>
-          <select
-            name=""
-            id=""
-            v-model="location"
-            class="
-              my-2
-              w-full
-              block
-              py-2
-              px-4
-              border-2
-              outline-none
-              border-light-purple
-              rounded-lg
-              text-gray-700
-            "
-            required
-          >
-            <option value="Auckland">Auckland</option>
-            <option value="Hamilton">Hamilton</option>
-            <option value="Tauranga">Tauranga</option>
-            <option value="Christchurch">Christchurch</option>
-            <option value="Wellington">Wellington</option>
-            <option value="Rotorua">Rotorua</option>
-            <option value="Dunedin">Dunedin</option>
-            <option value="Queenstown">Queenstown</option>
-            <option value="New Plymouth">New Plymouth</option>
-          </select>
+            <select
+              name=""
+              id=""
+              v-model="location"
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
+              required
+            >
+              <option value="Auckland">Auckland</option>
+              <option value="Hamilton">Hamilton</option>
+              <option value="Tauranga">Tauranga</option>
+              <option value="Christchurch">Christchurch</option>
+              <option value="Wellington">Wellington</option>
+              <option value="Rotorua">Rotorua</option>
+              <option value="Dunedin">Dunedin</option>
+              <option value="Queenstown">Queenstown</option>
+              <option value="New Plymouth">New Plymouth</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="">Payment Type</label>
-          <select
-            name=""
-            v-model="paymentType"
-            id=""
-            class="
-              my-2
-              w-full
-              block
-              py-2
-              px-4
-              border-2
-              outline-none
-              border-light-purple
-              rounded-lg
-              text-gray-700
-            "
-            required
-          >
-            <option value="Cash">Cash</option>
-            <option value="Debit, Credit card">Debit, Credit card</option>
-            <option value="Cash &amp; Card">Cash &amp; Card</option>
-          </select>
+            <select
+              name=""
+              v-model="paymentType"
+              id=""
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
+              required
+            >
+              <option value="Cash">Cash</option>
+              <option value="Debit, Credit card">Debit, Credit card</option>
+              <option value="Cash &amp; Card">Cash &amp; Card</option>
+            </select>
           </div>
-          <div class="form-group"> 
+          <div class="form-group">
             <label for="">Shipping Option</label>
-          <select
-            name=""
-            v-model="shippingOption"
-            id=""
-            class="
-              my-2
-              w-full
-              block
-              py-2
-              px-4
-              border-2
-              outline-none
-              border-light-purple
-              rounded-lg
-              text-gray-700
-            "
-            required
-          >
-            
-            <option value="NZ Post">NZ Post</option>
-            <option value="NZ Couriers">NZ Couriers</option>
-            <option value="Pick up">Pick up</option>
-          </select>
+            <select
+              name=""
+              v-model="shippingOption"
+              id=""
+              class="
+                my-2
+                w-full
+                block
+                py-2
+                px-4
+                border-2
+                outline-none
+                border-light-purple
+                rounded-lg
+                text-gray-700
+              "
+              required
+            >
+              <option value="NZ Post">NZ Post</option>
+              <option value="NZ Couriers">NZ Couriers</option>
+              <option value="Pick up">Pick up</option>
+            </select>
           </div>
         </div>
       </div>
@@ -258,7 +256,7 @@
         </div>
       </div>
       <button
-      type="submit"
+        type="submit"
         class="
           w-32
           self-end
@@ -282,7 +280,7 @@
 
 <script>
 import BackToListings from "../components/BackToListings";
-import ImageUploader from "../../service/imageInput";
+
 export default {
   name: "CreateListing",
   components: {
@@ -300,7 +298,7 @@ export default {
       paymentType: null,
       shippingOption: null,
       description: null,
-      comments:null,
+      comments: [],
       loading: false,
     };
   },
@@ -328,12 +326,10 @@ export default {
       }
       this.imgURL = result.url;
     },
-  
-  
 
-  //upload post to database
-  createPost() {
-    console.log('post')
+    //upload post to database
+    createPost() {
+      console.log("post");
       let post = {
         title: this.title,
         price: this.price,
@@ -345,16 +341,17 @@ export default {
         paymentType: this.paymentType,
         shippingOption: this.shippingOption,
         description: this.description,
-        comments : this.comments,
+        comments: [],
       };
 
       fetch("http://localhost:4000/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(post),
-      }).then(()=> {
-        this.$router.push("/")
-      })
+        credentials: "include",
+      }).then(() => {
+        this.$router.push("/");
+      });
     },
   },
 };
