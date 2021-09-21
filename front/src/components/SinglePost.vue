@@ -59,7 +59,6 @@
             })
           }}
         </h3>
-        {{ post.author.email }}
       </div>
     </div>
   </router-link>

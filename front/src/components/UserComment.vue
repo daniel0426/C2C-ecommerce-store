@@ -25,7 +25,9 @@
       </svg>
       <div class="flex flex-col">
         <!-- ADD USER'S NAME IN ONCE ACCOUNT FUNCTIONALITY IS COMPLETE -->
-        <h3 class="text-dark-purple text-md font-semibold">User Name asked:</h3>
+        <h3 class="text-dark-purple text-md font-semibold">
+          {{ comment.author.fname }} {{ comment.author.lname }} asked:
+        </h3>
         <h4 class="text-dark-purple text-md">
           {{ comment.text }}
         </h4>
