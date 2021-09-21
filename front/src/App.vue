@@ -32,8 +32,21 @@ export default {
     };
   },
 
-  mounted() {
+  async mounted() {
     this.user = JSON.parse(localStorage.getItem("user"));
+
+    if (this.user) {
+      try {
+        let res = await fetch("http://localhost:4000/account", {
+          credentials: "include",
+        });
+        res = await res.json();
+        console.log(res);
+        this.userLoggedIn(res);
+      } catch (err) {
+        this.logout();
+      }
+    }
   },
 
   methods: {
@@ -42,7 +55,8 @@ export default {
         credentials: "include",
       });
       const data = await response.json();
-      console.log(data);
+
+      localStorage.removeItem("user");
     },
     userLoggedIn(user) {
       localStorage.setItem("user", JSON.stringify(user));
