@@ -75,7 +75,7 @@
         <SellerTile :author="post.author" />
       </div>
     </div>
-    <!-- <Commenting class="mb-8" :post="post" @refresh="getPost" v-if="user" /> -->
+    <Commenting class="mb-8" :post="post" @refresh="getPost" v-if="user" />
     <div v-else>
       <h2
         class="
