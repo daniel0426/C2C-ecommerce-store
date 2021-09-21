@@ -1,7 +1,7 @@
 
 <template>
   <!-- Post Detail - Written by Alexis -->
-  <div class="flex flex-col">
+  <div class="flex flex-col" v-if="!loading">
     <div
       class="
         mt-4
@@ -15,14 +15,13 @@
       <BackToListings class="" />
 
       <!-- ADD TO WATCHLIST WILL APPEAR/DISAPPEAR BASED ON USER -->
-     
+
       <AddToWatchlist
         @add="addToWatchlist"
         class="hidden md:flex"
         :post="post"
         v-if="user"
       />
-     
     </div>
     <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
     <ManageMyListing class="my-4" :postId="post._id" :post="post" v-if="user" />
@@ -39,6 +38,9 @@
         <div>
           <h2 class="text-dark-purple font-semibold text-2xl mb-4">
             {{ post.title }}
+          </h2>
+          <h2 class="text-dark-purple font-semibold text-lg">
+            Listed By: {{ post.author.fname }} {{ post.author.lname }}
           </h2>
           <div class="text-dark-purple font-semibold text-lg my-4">
             <h3>
@@ -65,7 +67,7 @@
             </h2>
           </h3>
         </div>
-        <SellerTile />
+        <SellerTile :author="post.author" />
       </div>
     </div>
     <Commenting class="mb-8" :post="post" @refresh="getPost" v-if="user" />
@@ -93,7 +95,7 @@ import Commenting from "../components/Commenting.vue";
 import ManageMyListing from "../components/ManageMyListing.vue";
 export default {
   name: "PostDetail",
-  
+
   components: {
     AddToWatchlist,
     BackToListings,
@@ -105,17 +107,18 @@ export default {
   props: {
     postId: String,
     user: Object,
-    
   },
 
   data() {
     return {
       post: {},
+      loading: true,
     };
   },
 
   async mounted() {
-    this.getPost();
+    await this.getPost();
+    this.loading = false;
   },
 
   methods: {

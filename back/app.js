@@ -39,7 +39,7 @@ mongoose.connect(
   }
 );
 
-// ---------------- MIDDLEWARE ------------------ //
+// ---------------- MIDDLEWARE FOR ROUTE AUTH - ALEXIS ------------------ //
 
 app.use(cookieParser());
 
@@ -56,7 +56,7 @@ const authUser = (req, res, next) => {
         console.log(err);
         return res.status(401).json(err.message);
       } else {
-        console.log(decodedToken);
+        req.userId = decodedToken.id;
         next();
       }
     });
@@ -67,7 +67,7 @@ const authUser = (req, res, next) => {
 
 app.get("/posts", async (req, res, next) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate("author", "email fname lname");
     res.status(200).json(posts);
   } catch (err) {
     next(err);
@@ -78,7 +78,10 @@ app.get("/posts", async (req, res, next) => {
 
 app.get("/posts/:postId", async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params.postId);
+    const post = await Post.findById(req.params.postId).populate(
+      "author",
+      "email fname lname"
+    );
     res.status(200).json(post);
   } catch (err) {
     next(err);
@@ -91,6 +94,7 @@ app.post("/posts", authUser, async (req, res, next) => {
   try {
     const post = new Post({
       title: req.body.title,
+      author: req.userId,
       price: req.body.price,
       category: req.body.category,
       condition: req.body.condition,

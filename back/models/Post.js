@@ -4,6 +4,11 @@ const CommentSchema = mongoose.Schema(
   {
     // author: { type: String, required: true },
     text: { type: String, required: true },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Account",
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -12,6 +17,11 @@ const PostSchema = mongoose.Schema(
   {
     title: {
       type: String,
+      required: true,
+    },
+    author: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Account",
       required: true,
     },
     price: {

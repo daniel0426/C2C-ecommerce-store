@@ -39,6 +39,7 @@ const routes = [
     path: "/CreateListing",
     name: "CreateListing",
     component: CreateListing,
+    props: true,
   },
   {
     path: "/PostDetail/:postId",
@@ -61,16 +62,19 @@ const routes = [
     path: "/watchlist",
     name: "Watchlist",
     component: Watchlist,
+    props: true,
   },
   {
     path: "/notifications",
     name: "Notifications",
     component: Notifications,
+    props: true,
   },
   {
     path: "/Account",
     name: "Account",
     component: Account,
+    props: true,
   },
 ];
 
