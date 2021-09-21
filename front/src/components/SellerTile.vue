@@ -15,7 +15,7 @@
     <div class="flex flex-col w-1/3 align-middle">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-20 w-20 text-purple-grey"
+        class="h-20 w-20 text-purple-grey my-auto"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
@@ -25,28 +25,24 @@
           clip-rule="evenodd"
         />
       </svg>
-      <h3 class="text-lg font-epilogue font-semibold text-purple-grey">
-        User Name
-      </h3>
+      <h3
+        class="text-lg flex font-epilogue font-semibold text-purple-grey"
+      ></h3>
     </div>
     <div class="flex flex-col ml-6 mt-2">
       <h2
-        class="
-          text-lg
-          font-epilogue
-          pb-2
-          mb-2
-          font-semibold
-          text-dark-purple text-center
-        "
+        class="text-lg font-epilogue font-semibold text-dark-purple text-center"
       >
         Seller Information:
       </h2>
-      <h3 class="text-lg font-epilogue font-semibold text-purple-grey">
-        Location:
+      <h3 class="text-md font-epilogue font-semibold text-purple-grey">
+        Name:
+        <span class="text-dark-purple"
+          >{{ author.fname }} {{ author.lname }}</span
+        >
       </h3>
-      <h3 class="text-lg font-epilogue font-semibold text-purple-grey">
-        Sales:
+      <h3 class="text-md font-epilogue font-semibold text-purple-grey">
+        Contact: <span class="text-dark-purple">{{ author.email }}</span>
       </h3>
     </div>
   </div>
@@ -55,6 +51,10 @@
 <script>
 export default {
   name: "SellerTile",
+  props: {
+    author: Object,
+    default: {},
+  },
 };
 </script>
 
