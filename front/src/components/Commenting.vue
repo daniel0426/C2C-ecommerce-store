@@ -103,6 +103,7 @@ export default {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(this.comment),
+          credentials: "include",
         }
       );
       // const data = await response.json();
@@ -123,7 +124,7 @@ export default {
           this.post._id +
           "/comments/" +
           commentId,
-        { method: "DELETE" }
+        { method: "DELETE", credentials: "include" }
       );
       const data = await response.json();
 

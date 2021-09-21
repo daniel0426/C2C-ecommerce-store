@@ -24,7 +24,12 @@
       />
     </div>
     <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
-    <ManageMyListing class="my-4" :postId="post._id" :post="post" v-if="user" />
+    <ManageMyListing
+      class="my-4"
+      :postId="post._id"
+      :post="post"
+      v-if="isAuthor"
+    />
     <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div class="">
@@ -70,7 +75,7 @@
         <SellerTile :author="post.author" />
       </div>
     </div>
-    <Commenting class="mb-8" :post="post" @refresh="getPost" v-if="user" />
+    <!-- <Commenting class="mb-8" :post="post" @refresh="getPost" v-if="user" /> -->
     <div v-else>
       <h2
         class="
@@ -109,6 +114,12 @@ export default {
     user: Object,
   },
 
+  computed: {
+    isAuthor() {
+      return this.user?.id === this.post.author._id;
+    },
+  },
+
   data() {
     return {
       post: {},
@@ -118,6 +129,7 @@ export default {
 
   async mounted() {
     await this.getPost();
+    console.log(this.user, this.isAuthor);
     this.loading = false;
   },
 

@@ -78,10 +78,9 @@ app.get("/posts", async (req, res, next) => {
 
 app.get("/posts/:postId", async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params.postId).populate(
-      "author",
-      "email fname lname"
-    );
+    const post = await Post.findById(req.params.postId)
+      .populate("author", "email fname lname")
+      .populate("comments.author", "email fname lname");
     res.status(200).json(post);
   } catch (err) {
     next(err);
@@ -253,7 +252,10 @@ app.get("/accounts/logout", async (req, res) => {
 //Get All Comments - Alexis
 
 app.get("/posts/:postId/comments", async (req, res) => {
-  const post = await Post.findById(req.params.postId);
+  const post = await Post.findById(req.params.postId).populate(
+    "author",
+    "email fname lname"
+  );
   res.status(200).json(post.comments);
 });
 
@@ -276,12 +278,12 @@ app.delete("/posts/:postId/comments/:commentId", async (req, res) => {
 
 //Post Comment - Alexis
 
-app.post("/posts/:postId/comments", async (req, res, next) => {
+app.post("/posts/:postId/comments", authUser, async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.postId);
-    console.log(post);
     post.comments.push({
       text: req.body.text,
+      author: req.userId,
     });
     const savedPost = await post.save();
     res.status(200).send(savedPost);
