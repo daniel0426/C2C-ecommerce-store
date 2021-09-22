@@ -82,8 +82,7 @@
           <div class="form-group">
             <label for>Category</label>
             <select
-              name
-              id
+              name="id"
               v-model="post.category"
               class="
                 my-2
@@ -108,8 +107,7 @@
           <div class="form-group">
             <label for>Condition</label>
             <select
-              name
-              id
+              name="id"
               v-model="post.condition"
               class="
                 my-2
@@ -155,8 +153,7 @@
           <div class="form-group">
             <label for>Location</label>
             <select
-              name
-              id
+              name="id"
               v-model="post.location"
               class="
                 my-2
@@ -186,9 +183,9 @@
           <div class="form-group">
             <label for>Payment Type</label>
             <select
-              name
+              name="id"
               v-model="post.paymentType"
-              id
+             
               class="
                 my-2
                 w-full
@@ -211,9 +208,9 @@
           <div class="form-group">
             <label for>Shipping Option</label>
             <select
-              name
+              name="id"
               v-model="post.shippingOption"
-              id
+              
               class="
                 my-2
                 w-full
