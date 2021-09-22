@@ -20,13 +20,13 @@
       Browse:
     </h2>
 
-    <div class=" mb-4">
-      <SearchFilter @filteredByInput = "categorizeByInput" />
-      <CategoryFilter class="my-12" @categorizeListings= "categorizeByFilter" />
+    <div class="mb-4">
+      <SearchFilter @filteredByInput="categorizeByInput" />
+      <CategoryFilter class="my-1" @categorizeListings="categorizeByFilter" />
     </div>
 
     <div
-      v-if="filteredPosts.length "
+      v-if="filteredPosts.length"
       class="
         grid
         gap-6
@@ -46,10 +46,10 @@
       />
     </div>
     <div v-else>
-      <h1 class="text-center m-12">There are no available items on this category</h1>
+      <h1 class="text-center m-12">
+        There are no available items on this category
+      </h1>
     </div>
-   
-    
   </div>
 </template>
 
@@ -73,14 +73,12 @@ export default {
   data() {
     return {
       posts: [],
-      category:"",
-      inputItem:"",
-      filteredPosts:[],
+      category: "",
+      inputItem: "",
+      filteredPosts: [],
     };
-  }, 
-  computed :{
-   
   },
+  computed: {},
   mounted() {
     this.getPosts();
     console.log("User:", this.user);
@@ -92,32 +90,32 @@ export default {
       this.posts = data;
       this.filteredPosts = this.posts;
     },
-    categorizeByFilter(category){
-      this.category = category
+    categorizeByFilter(category) {
+      this.category = category;
       this.filterPosts();
     },
 
-    categorizeByInput(inputItem){
-     this.inputItem = inputItem
-     this.filterPosts()
-     this.inputItem ="";
+    categorizeByInput(inputItem) {
+      this.inputItem = inputItem;
+      this.filterPosts();
+      this.inputItem = "";
     },
 
-     filterPosts(){
-       this.filteredPosts = this.posts.filter(post => {
-         
-         if (this.inputItem.length > 0 ){
-             return post.title.includes(this.inputItem)
-            } 
-          if(this.category ==='All' || this.category === "" || this.inputItem === undefined){
-                return post
-            }
-              return post.category === this.category
-       
-      }
-      )
-    }
-
+    filterPosts() {
+      this.filteredPosts = this.posts.filter((post) => {
+        if (this.inputItem.length > 0) {
+          return post.title.includes(this.inputItem);
+        }
+        if (
+          this.category === "All" ||
+          this.category === "" ||
+          this.inputItem === undefined
+        ) {
+          return post;
+        }
+        return post.category === this.category;
+      });
+    },
   },
 };
 </script>
