@@ -12,7 +12,7 @@
       flex flex-row
     "
   >
-    <div class="flex flex-col w-1/3 align-middle">
+    <div class="flex flex-col w-1/4 align-middle">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-20 w-20 text-purple-grey my-auto"
@@ -30,9 +30,7 @@
       ></h3>
     </div>
     <div class="flex flex-col ml-6 mt-2">
-      <h2
-        class="text-lg font-epilogue font-semibold text-dark-purple text-center"
-      >
+      <h2 class="text-lg font-epilogue font-semibold mb-2 text-dark-purple">
         Seller Information:
       </h2>
       <h3 class="text-md font-epilogue font-semibold text-purple-grey">
@@ -41,8 +39,11 @@
           >{{ author.fname }} {{ author.lname }}</span
         >
       </h3>
-      <h3 class="text-md font-epilogue font-semibold text-purple-grey">
-        Contact: <span class="text-dark-purple">{{ author.email }}</span>
+      <h3 class="text-md font-epilogue mb-2 font-semibold text-purple-grey">
+        Member Since:
+        <span class="text-dark-purple">
+          {{ new Date(author.createdAt).toLocaleDateString("en-NZ") }}
+        </span>
       </h3>
     </div>
   </div>

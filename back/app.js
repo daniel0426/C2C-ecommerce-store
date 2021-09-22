@@ -79,8 +79,8 @@ app.get("/posts", async (req, res, next) => {
 app.get("/posts/:postId", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.postId)
-      .populate("author", "email fname lname")
-      .populate("comments.author", "email fname lname");
+      .populate("author", "email fname lname createdAt")
+      .populate("comments.author", "email fname lname createdAt");
     res.status(200).json(post);
   } catch (err) {
     next(err);
