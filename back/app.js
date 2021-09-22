@@ -140,7 +140,7 @@ app.patch("/posts/:postId", authUser, async (req, res, next) => {
 });
 
 //Delete post - Daniel
-app.delete("/posts/:postId", authUser, async (req, res, next) => {
+app.delete("/posts/:postId", async (req, res, next) => {
   if (user === post.author.id) {
     try {
       console.log("deleted");
@@ -153,7 +153,20 @@ app.delete("/posts/:postId", authUser, async (req, res, next) => {
 });
 
 //Account endpoints
+app.get("/account", authUser, async (req, res, next) => {
+  try {
+    const user = await Account.findById(req.userId);
 
+    return res.status(200).json({
+      id: user._id,
+      email: user.email,
+      fname: user.fname,
+      lname: user.lname,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 app.post("/accounts/create", async (req, res) => {
   const existingAccount = await Account.findOne({
     email: req.body.email,

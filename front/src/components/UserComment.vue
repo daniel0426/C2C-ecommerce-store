@@ -26,7 +26,12 @@
       <div class="flex flex-col">
         <!-- ADD USER'S NAME IN ONCE ACCOUNT FUNCTIONALITY IS COMPLETE -->
         <h3 class="text-dark-purple text-md font-semibold">
-          {{ comment.author.fname }} {{ comment.author.lname }} asked:
+          {{
+            !!comment.author
+              ? `${comment.author?.fname} ${comment.author?.lname}`
+              : "Anon"
+          }}
+          asked:
         </h3>
         <h4 class="text-dark-purple text-md">
           {{ comment.text }}
