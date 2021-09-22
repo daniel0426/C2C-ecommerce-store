@@ -1,7 +1,7 @@
 <template>
   <!-- Whole App Layout/Styling - Alexis -->
   <div class="h-screen flex flex-col w-full bg-cream">
-    <NavBar v-bind:user="user" />
+    <NavBar v-bind:user="user" @logout="logout" />
 
     <div class="flex flex-grow overflow-y-auto">
       <div class="max-w-4xl w-full mx-auto px-2">
@@ -40,9 +40,12 @@ export default {
         let res = await fetch("http://localhost:4000/account", {
           credentials: "include",
         });
-        res = await res.json();
-        console.log(res);
-        this.userLoggedIn(res);
+        let user = await res.json();
+        if (res.status === 200) {
+          this.userLoggedIn(user);
+        } else {
+          this.logout();
+        }
       } catch (err) {
         this.logout();
       }
@@ -50,13 +53,14 @@ export default {
   },
 
   methods: {
-    async logOut() {
+    async logout() {
       const response = await fetch("http://localhost:4000/accounts/logout", {
         credentials: "include",
       });
       const data = await response.json();
 
       localStorage.removeItem("user");
+      location.reload();
     },
     userLoggedIn(user) {
       localStorage.setItem("user", JSON.stringify(user));

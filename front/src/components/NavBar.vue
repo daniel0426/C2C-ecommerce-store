@@ -229,14 +229,15 @@ export default {
       this.menuOpen = false;
     },
     async logOut() {
-      const response = await fetch("http://localhost:4000/accounts/logout", {
-        credentials: "include",
-      });
-      const data = await response.json();
+      // const response = await fetch("http://localhost:4000/accounts/logout", {
+      //   credentials: "include",
+      // });
+      // const data = await response.json();
 
-      localStorage.removeItem("user");
-      console.log(data);
-      location.reload();
+      // localStorage.removeItem("user");
+      // console.log(data);
+      // location.reload();
+      this.$emit("logout");
     },
   },
 };
