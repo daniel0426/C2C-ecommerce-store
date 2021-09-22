@@ -148,7 +148,7 @@ app.delete("/posts/:postId" , authUser, async (req, res, next) => {
     if (post) {
       res.status(200).json(post);
     } else {
-      res.status(401).json({messahe: "You are not authorised to delete this post." });
+      res.status(401).json({message: "You are not authorised to delete this post." });
     }
   } catch (err) {
     next(err);
