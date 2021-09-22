@@ -140,23 +140,21 @@ app.patch("/posts/:postId", authUser, async (req, res, next) => {
 });
 
 //Delete post - Daniel
-app.delete("/posts/:postId", authUser, async (req, res, next) => {
-  try {
+app.delete("/posts/:postId" , authUser, async (req, res, next) => {
+  try{
     let post = await Post.findOneAndDelete({
-      _id: req.params.postId,
-      author: req.userId,
+      _id: req.params.postId,  suthor: req.userId,
     });
     if (post) {
       res.status(200).json(post);
     } else {
-      res
-        .status(401)
-        .json({ message: "You are not authorized to delete this post." });
+      res.status(401).json({me3ssahe: "You are not authorised to delete this post." });
     }
   } catch (err) {
     next(err);
   }
 });
+
 
 //Account endpoints
 app.get("/account", authUser, async (req, res, next) => {

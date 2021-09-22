@@ -28,7 +28,7 @@
       class="my-4"
       :postId="post._id"
       :post="post"
-      v-if="isAuthor"
+      v-if="isAuthor | true"
     />
     <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
