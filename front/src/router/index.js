@@ -6,7 +6,6 @@ import CreateListing from "../views/CreateListing.vue";
 import PostDetail from "../views/PostDetail.vue";
 import MyListings from "../views/MyListings.vue";
 import PostUpdate from "../views/PostUpdate.vue";
-import Watchlist from "../views/Watchlist.vue";
 import Notifications from "../views/Notifications.vue";
 import Account from "../views/Account.vue";
 
@@ -56,12 +55,6 @@ const routes = [
     path: "/PostUpdate",
     name: "PostUpdate",
     component: PostUpdate,
-    props: true,
-  },
-  {
-    path: "/watchlist",
-    name: "Watchlist",
-    component: Watchlist,
     props: true,
   },
   {

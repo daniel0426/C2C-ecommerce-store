@@ -82,7 +82,7 @@
           <div v-if="user" class="flex flex-col space-y-4">
             <router-link to="/CreateListing"> List Item </router-link>
             <router-link to="/MyListings"> My Listings </router-link>
-            <router-link to="/Watchlist"> Watchlist </router-link>
+            <!--<router-link to="/Watchlist"> Watchlist </router-link> -->
             <!-- <router-link to="/Notifications"> Notifications </router-link> -->
             <router-link to="/Account" class="flex text-right">
               <svg
@@ -144,7 +144,7 @@
       >
         <router-link to="/CreateListing"> List Item </router-link>
         <router-link to="/MyListings"> My Listings </router-link>
-        <router-link to="/Watchlist"> Watchlist </router-link>
+        <!--<router-link to="/Watchlist"> Watchlist </router-link>-->
         <!-- <router-link to="/Notifications"> Notifications </router-link> -->
         <router-link to="/Account">
           <svg
