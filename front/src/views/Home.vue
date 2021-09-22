@@ -21,12 +21,12 @@
     </h2>
 
     <div class=" mb-4">
-      <SearchFilter />
-      <CategoryFilter class="my-12"/>
+      <SearchFilter @filteredByInput = "categorizeByInput" />
+      <CategoryFilter class="my-12" @categorizeListings= "categorizeByFilter" />
     </div>
 
     <div
-      v-if="posts"
+      v-if="filteredPosts.length"
       class="
         grid
         gap-6
@@ -40,11 +40,16 @@
     >
       <SinglePost
         class="flex mx-auto"
-        v-for="post in posts"
+        v-for="post in filteredPosts"
         :key="post._id"
         :post="post"
       />
     </div>
+    <div v-else>
+      <h1 class="text-center m-12">There are no available items on this category</h1>
+    </div>
+   
+    
   </div>
 </template>
 
@@ -56,7 +61,6 @@ import CategoryFilter from "../components/CategoryFilter.vue";
 
 export default {
   name: "Home",
-
   props: {
     user: Object,
   },
@@ -69,7 +73,13 @@ export default {
   data() {
     return {
       posts: [],
+      category:"",
+      inputItem:"",
+      filteredPosts:[],
     };
+  }, 
+  computed :{
+   
   },
   mounted() {
     this.getPosts();
@@ -80,8 +90,34 @@ export default {
       const response = await fetch("http://localhost:4000/posts");
       const data = await response.json();
       this.posts = data;
-      console.log(this.posts);
     },
+    categorizeByFilter(category){
+      this.category = category
+      this.filterPosts();
+    },
+
+    categorizeByInput(inputItem){
+     this.inputItem = inputItem
+     this.filterPosts()
+     this.inputItem ="";
+     console.log(this.inputItem)
+    },
+
+     filterPosts(){
+       this.filteredPosts = this.posts.filter(post => {
+         console.log(this.inputItem)
+         if (this.inputItem.length > 0 ){
+             return post.title.includes(this.inputItem)
+            } 
+          if(this.category ==='All' || this.category === "" || this.inputItem === undefined){
+                return post
+            }
+              return post.category === this.category
+       
+      }
+      )
+    }
+
   },
 };
 </script>
