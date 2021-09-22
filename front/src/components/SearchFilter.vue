@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center border border-red-500">
+  <div class="flex items-center">
     <h1 class="text-1xl font-bold text-dark-purple font-epilogue">
       I am looking for ...
     </h1>

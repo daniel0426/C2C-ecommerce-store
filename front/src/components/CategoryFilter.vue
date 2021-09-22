@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col border border-red-500">
+  <div class="flex-col">
     <h2 class="font-semibold text-2xl text-dark-purple font-epilogue mb-4">
       Filter By:
     </h2>
