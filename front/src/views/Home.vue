@@ -26,7 +26,7 @@
     </div>
 
     <div
-      v-if="filteredPosts.length"
+      v-if="filteredPosts.length "
       class="
         grid
         gap-6
@@ -90,6 +90,7 @@ export default {
       const response = await fetch("http://localhost:4000/posts");
       const data = await response.json();
       this.posts = data;
+      this.filteredPosts = this.posts;
     },
     categorizeByFilter(category){
       this.category = category
@@ -100,12 +101,11 @@ export default {
      this.inputItem = inputItem
      this.filterPosts()
      this.inputItem ="";
-     console.log(this.inputItem)
     },
 
      filterPosts(){
        this.filteredPosts = this.posts.filter(post => {
-         console.log(this.inputItem)
+         
          if (this.inputItem.length > 0 ){
              return post.title.includes(this.inputItem)
             } 

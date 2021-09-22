@@ -1,12 +1,12 @@
 <template>
-<div class=" flex justify-around items-center" >
-  <h2 class="text-1xl  text-dark-purple font-epilogue">Filtered By  :</h2>
-  <form @click.prevent = "categorize" class="flex justify-around flex-1  md:flex-row  flex-col items-center justify-center">
-    <button type="submit"   class="text-white bg-gray-400 px-4 py-1 rounded text-1xl cursor-pointer  ease-in-out"  >All</button>
-    <button type="submit"  class="text-white bg-gray-400 px-4 py-1 rounded  text-1xl cursor-pointer  ease-in-out">Mens</button>
-    <button type="submit"  class="text-white bg-gray-400 px-4 py-1 rounded  text-1xl cursor-pointer ease-in-out">Womens</button>
-    <button type="submit"  class="text-white bg-gray-400 px-4 py-1 rounded  text-1xl cursor-pointer  ease-in-out">Children</button>
-    <button type="submit"  class="text-white bg-gray-400 px-4 py-1 rounded  text-1xl cursor-pointer  ease-in-out">Accessories</button>
+<div class=" flex-col " >
+  <h2 class="text-1xl mb-4 font-bold text-bright-purple font-epilogue">Filtered By  :</h2>
+  <form @click.prevent = "categorize" class="flex justify-between flex-1  md:flex-row  flex-col items-center justify-center">
+    <button type="submit"   class="text-white bg-gray-400 px-6 py-1 rounded-full text-1xl cursor-pointer  ease-in-out"  >All</button>
+    <button type="submit"  class="text-white bg-gray-400 px-6 py-1 rounded-full  text-1xl cursor-pointer  ease-in-out">Mens</button>
+    <button type="submit"  class="text-white bg-gray-400 px-6 py-1 rounded-full  text-1xl cursor-pointer ease-in-out">Womens</button>
+    <button type="submit"  class="text-white bg-gray-400 px-6 py-1 rounded-full  text-1xl cursor-pointer  ease-in-out">Children</button>
+    <button type="submit"  class="text-white bg-gray-400 px-6 py-1 rounded-full  text-1xl cursor-pointer  ease-in-out">Accessories</button>
   </form>
 </div>
 </template>
