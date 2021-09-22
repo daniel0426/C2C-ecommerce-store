@@ -79,8 +79,8 @@ app.get("/posts", async (req, res, next) => {
 app.get("/posts/:postId", async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.postId)
-      .populate("author", "email fname lname")
-      .populate("comments.author", "email fname lname");
+      .populate("author", "email fname lname createdAt")
+      .populate("comments.author", "email fname lname createdAt");
     res.status(200).json(post);
   } catch (err) {
     next(err);
@@ -140,15 +140,21 @@ app.patch("/posts/:postId", authUser, async (req, res, next) => {
 });
 
 //Delete post - Daniel
-app.delete("/posts/:postId", async (req, res, next) => {
-  if (user === post.author.id) {
-    try {
-      console.log("deleted");
-      const deletePost = await Post.findByIdAndDelete(req.params.postId);
-      res.status(200).json(deletePost);
-    } catch (err) {
-      next(err);
+app.delete("/posts/:postId", authUser, async (req, res, next) => {
+  try {
+    let post = await Post.findOneAndDelete({
+      _id: req.params.postId,
+      author: req.userId,
+    });
+    if (post) {
+      res.status(200).json(post);
+    } else {
+      res
+        .status(401)
+        .json({ message: "You are not authorized to delete this post." });
     }
+  } catch (err) {
+    next(err);
   }
 });
 
