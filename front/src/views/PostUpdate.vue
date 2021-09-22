@@ -4,6 +4,7 @@
   <div v-if="post" class="w-full">
     <BackToListings />
     <form
+      novalidate
       @submit.prevent="updatePost"
       class="mx-auto my-12 box-border p-4 flex flex-col"
     >
