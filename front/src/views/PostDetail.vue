@@ -116,7 +116,7 @@ export default {
 
   computed: {
     isAuthor() {
-      return this.user?.id === this.post.author._id;
+      return this.user?.id === this.post.author?._id;
     },
   },
 
@@ -129,6 +129,9 @@ export default {
 
   async mounted() {
     await this.getPost();
+    if (!this.post.author) {
+      this.$router.push("/");
+    }
     console.log(this.user, this.isAuthor);
     this.loading = false;
   },
