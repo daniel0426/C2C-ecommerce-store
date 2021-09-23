@@ -46,9 +46,11 @@
                                 <b><u>Sign in here</u></b></span
                         ><br /><br />
                         <form
-                                @submit.prevent="createAccountButtonPressed"
+                        @submit="createSingleUser"
+                                
                                 class="signup-form text-dark-purple sm:space-y-1 md:space-y-1 lg:space-y-1 text-sm  bg-cream text-center place-items-center"
-                                name="signup-form"
+                                name="signup-form" novalidate
+                                
                         >
                                 <input
                                         type="text"
@@ -87,7 +89,7 @@
                                         >{{ msg.dateofbirth }}</span
                                 ><br />
                                 <input
-                                        type="text"
+                                        type="email"
                                         class="email bg-white text-purple-grey placeholder-purple-grey text-center opacity-60 rounded-xl border-2 border-purple-grey border-solid px-5 py-1"
                                         name="email"
                                         v-model="account.email"
@@ -128,7 +130,9 @@
                                         
                                         type="submit"
                                         class="signup-form-button bg-dark-purple rounded-xl text-sm px-5 py-2 text-cream"
-                                >
+                                        @click.prevent="validateForm"
+                                        
+                                >       
                                         Create Account</button
                                 ><br />
                         </form>
@@ -166,97 +170,108 @@ export default {
                 };
         },
 
-        methods: {
-                createAccountButtonPressed(e) {
+        methods: {    
+              
+                validateForm() {
 
-                        let error = 0;
+                        var firstname = this.account.fname;
+                        var lastname = this.account.lname;
+                        var dob = this.account.dateofbirth;
+                        var email= this.account.email;
+                        var pass1 = this.account.password;
+                        var pass2 = this.account.confirmpassword;
 
-                        if (this.account.fname == null) {
-                                this.msg["fname"] =
-                                        "First name required !";
-                                        error += 1;
+                        
+                        var  fnameErr = true
+                        var  lnameErr = true
+                        var  dobErr = true
+                        var emailErr =true
+                        var passErr = true
+                        var confirmErr = true
+
+                        //validate first name
+                        if (firstname == ''){
+                                this.msg['fname'] = "Field Cannot Be Blank !"
+                                console.log("Field cannot be blank");
                         } else {
-                                this.msg["fname"] = "";
-                                error = 0;
-                        }
-
-                        if (this.account.lname == null) {
-                                this.msg["lname"] =
-                                        "Last name required !";
-                                        error += 1;
-                        } else {
-                                this.msg["lname"] = "";
-                                error = 0;
-                        }
-
-                        if (this.account.dateofbirth == null) {
-                                this.msg["dateofbirth"] =
-                                        "Please enter your Date Of Birth DD/MM/YYYY !";
-                                        error += 1;
-                        } else {
-                                this.msg["dateofbirth"] = "";
-                                error = 0;
-                        }
-
-                        if (this.account.email == null) {
-                                this.msg["email"] =
-                                        "Please Enter your Email Address";
-                                        error += 1;
-                        } else {
-                                if (!this.validEmail(this.account.email)) {
-                                        this.msg["email"] = "Invalid Email !  try your.name@email.com ";
-                                        error += 1;
-                                } else {
-                                        this.msg["email"] = "";
-                                        error = 0;
+                                const regex = /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/
+                                if (regex.test(firstname) === false) {
+                                        this.msg['fname'] = "Please Enter A Valid First Name !"                                        
+                                }else {
+                                        fnameErr = false
                                 }
                         }
 
-                        if (this.account.password == null) {
-                                this.msg["password"] =
-                                        "A password is required !";
-                                        error += 1;
+                        //validate last name
+                        if (lastname == ''){
+                                this.msg['lname'] = "Field Cannot Be Blank !";
+                                console.log("Field cannot be blank");
                         } else {
-                                if (this.account.password.length < 8) {
-                                        this.msg["password"] =
-                                                "Password must be atlease 8 characters long with no spaces";
-                                                error += 1;
+                                const regex =  /^[a-zA-Z]+(([\'\,\.\- ][a-zA-Z ])?[a-zA-Z]*)*$/
+                                if (regex.test(lastname) === false) {
+                                        this.msg['lname'] = "Please Enter A Valid last Name !";                                        
                                 } else {
-                                        this.msg["password"] = "";
-                                        error = 0;
-                                }                               
-                        }
-
-                        if (this.account.confirmpassword == null) {
-                                this.msg["confirmpass"] =
-                                        "Please confirm your  Password";
-                                        error += 1
-                        } else {
-                                if (
-                                        this.account.password !==
-                                        this.account.confirmpassword
-                                ) {
-                                        this.msg["confirmpass"] =
-                                                "Passwords do not match, please check and try again !";
-                                                error += 1;
-                                } else {
-                                        this.msg["confirmpass"] =
-                                                "Passwords match";
-                                                error = 0;
+                                        lnameErr = false
                                 }
                         }
 
-                        if (error < 1) {
-                                this.createSingleAccount();
-                        }                       
-                },
+                        //validate date of birth
+                        if (dob == '' ) {
+                                this.msg['dateofbirth'] = "Field Cannot Be Blank ! ";
+                                console.log("Field cannot be blank")
+                        }else {
+                                const regex =  /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/
+                                if (regex.test(dob) === false ) {
+                                        this.msg['dateofbirth'] = "Please Enter A Valid Date dd/mm/yyyy !";                                        
+                                } else {
+                                        dobErr= false
+                                }
+                        }
 
-                validEmail(email) {
-                        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                        return re.test(email);
-                },
+                        //validate email
 
-               
+                        if (email == '') {
+                                this.msg['email'] = "This Field Cannot Be Blank !";
+                                console.log("Field cannot be blank")
+                        }else {
+                                const regex = /^\S+@\S+\.\S+$/
+                                if (regex.test(email) === false ) {
+                                        this.msg['email'] = "Please Enter A Vallid Email Address !"                                        
+                                } else {
+                                        emailErr = false
+                                }
+                        }
+
+                        //validate password
+
+                        if (pass1 == '') {
+                                this.msg['password'] = "Password Cannot Be Blank !"
+                                console.log("Field cannot be blank")
+                        }else {
+                                const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,15}$/
+                                if (regex.test(pass1) === false ) {
+                                        this.msg['password'] = "Password must include at least one upper case letter, one lower case letter, and one numeric digit"                                        
+                                }else {
+                                        passErr = false;
+                                }
+                        }
+
+                        //compare passwords
+
+                        if (pass1 !== pass2 ) {
+                                this.msg['confirmpass'] = "Passwords Do Not Match Please Try Again !"
+                                console.log("Input  Invalid")
+                        } else {
+                                confirmErr = false;
+                        }
+
+                        if ((fnameErr || lnameErr || dobErr || emailErr || passErr || confirmErr ) == true ) {
+                                return false;
+                        }   else {
+                               this.createSingleAccount();
+                        }                         
+                        alert (dataPreview);
+                },               
 
                 goBack() {
                         return this.$router.push(HomeVue);

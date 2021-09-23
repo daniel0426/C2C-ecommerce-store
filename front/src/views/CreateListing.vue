@@ -60,7 +60,8 @@
           <div class="form-group my-2">
             <label for="">Listing Price</label>
             <input
-              type="text"
+              type="number"
+              step=".01"
               v-model="price"
               class="
                 w-full
@@ -332,7 +333,7 @@ export default {
       console.log("post");
       let post = {
         title: this.title,
-        price: this.price,
+        price: this.price * 100,
         imgURL: this.imgURL,
         category: this.category,
         condition: this.condition,
