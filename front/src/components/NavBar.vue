@@ -82,8 +82,6 @@
           <div v-if="user" class="flex flex-col space-y-4">
             <router-link to="/CreateListing"> List Item </router-link>
             <router-link to="/MyListings"> My Listings </router-link>
-            <!--<router-link to="/Watchlist"> Watchlist </router-link> -->
-            <!-- <router-link to="/Notifications"> Notifications </router-link> -->
             <router-link to="/Account" class="flex text-right">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +99,7 @@
               </svg>
               My Account
             </router-link>
-            <button class="flex flex-end font-semibold" @click="logOut">
+            <button class="flex justify-end font-semibold" @click="logOut">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6 mr-2"
@@ -119,7 +117,7 @@
               Log Out
             </button>
           </div>
-          <div class="flex flex-col space-y-4" v-else>
+          <div class="flex flex-col text-right flex-end space-y-4" v-else>
             <router-link to="/Login"> Log In</router-link>
             <router-link to="/CreateAccount"> Create Account </router-link>
           </div>
@@ -144,8 +142,6 @@
       >
         <router-link to="/CreateListing"> List Item </router-link>
         <router-link to="/MyListings"> My Listings </router-link>
-        <!--<router-link to="/Watchlist"> Watchlist </router-link>-->
-        <!-- <router-link to="/Notifications"> Notifications </router-link> -->
         <router-link to="/Account">
           <svg
             xmlns="http://www.w3.org/2000/svg"
