@@ -98,6 +98,7 @@
               "
               required
             >
+              <option selected disabled value="Category">Select Catgory</option>
               <option value="Mens">Mens</option>
               <option value="Womens">Womens</option>
               <option value="Children">Children</option>
@@ -124,6 +125,7 @@
               "
               required
             >
+              <option selected disabled value="Select Condition">Select Condition</option>
               <option value="New">New</option>
               <option value="Like New">Like New</option>
               <option value="Good">Good</option>
@@ -171,6 +173,7 @@
               "
               required
             >
+              <option selected disabled value="Select Location">Select Location</option>
               <option value="Auckland">Auckland</option>
               <option value="Hamilton">Hamilton</option>
               <option value="Tauranga">Tauranga</option>
@@ -202,6 +205,7 @@
               "
               required
             >
+              <option selected disabled value="Select Payment Type">Select Payment Type</option>
               <option value="Cash">Cash</option>
               <option value="Debit, Credit card">Debit, Credit card</option>
               <option value="Cash &amp; Card">Cash &amp; Card</option>
@@ -226,7 +230,8 @@
                 text-gray-700
               "
               required
-            >
+            > 
+              <option selected disabled value="Select Shipping Option">Select Shipping Option</option>
               <option value="NZ Post">NZ Post</option>
               <option value="NZ Couriers">NZ Couriers</option>
               <option value="Pick up">Pick up</option>

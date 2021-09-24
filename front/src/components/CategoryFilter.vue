@@ -5,7 +5,7 @@
     </h2>
     <form
       @click.prevent="categorize"
-      class="flex flex-1 md:flex-row flex-col items-center justify-between"
+      class="md:flex flex flex-wrap md:flex-row md:justify-between  items-center justify-center"
     >
       <button
         type="submit"
