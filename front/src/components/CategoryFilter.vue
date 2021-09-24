@@ -14,6 +14,8 @@
           bg-gray-400
           px-6
           py-1
+          m-1
+
           rounded-full
           text-1xl
           cursor-pointer
@@ -29,6 +31,8 @@
           bg-gray-400
           px-6
           py-1
+          m-1
+
           rounded-full
           text-1xl
           cursor-pointer
@@ -44,6 +48,8 @@
           bg-gray-400
           px-6
           py-1
+          m-1
+
           rounded-full
           text-1xl
           cursor-pointer
@@ -59,6 +65,8 @@
           bg-gray-400
           px-6
           py-1
+          m-1
+
           rounded-full
           text-1xl
           cursor-pointer
@@ -74,6 +82,7 @@
           bg-gray-400
           px-6
           py-1
+          m-1
           rounded-full
           text-1xl
           cursor-pointer
