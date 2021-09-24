@@ -20,7 +20,7 @@
       Browse:
     </h2>
 
-    <div class="mb-4">
+    <div class="mb-8">
       <SearchFilter @filteredByInput="categorizeByInput" />
       <CategoryFilter class="my-1" @categorizeListings="categorizeByFilter" />
     </div>

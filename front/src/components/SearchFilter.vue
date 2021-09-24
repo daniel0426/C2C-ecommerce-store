@@ -23,17 +23,17 @@
           w-full
           px-4
           py-2
-          border border-bright-purple
+          border border-purple-grey
           rounded-full
           placeholder-white
-          text-bright-purple
+          text-purple-grey
           outline-none
         "
         type="text"
         placeholder="Seach items..."
       />
       <button type="submit" class="absolute right-4">
-        <i class="text-xl font-medium fas fa-search text-bright-purple"></i>
+        <i class="text-xl font-medium fas fa-search text-purple-grey"></i>
       </button>
     </form>
   </div>

@@ -15,6 +15,7 @@
       v-for="comment in comments"
       :key="comment.id"
       :comment="comment"
+      :isAuthor="isAuthor"
       @reply="reply(comment)"
       @delete="deleteComment(comment._id)"
       class="my-2"
@@ -80,6 +81,10 @@ export default {
     post: {
       type: Object,
       default: {},
+    },
+    isAuthor: {
+      type: Boolean,
+      default: false,
     },
   },
 

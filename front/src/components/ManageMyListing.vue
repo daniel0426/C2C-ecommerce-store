@@ -16,8 +16,9 @@
   >
     <div>
       <h2 class="text-xl text-dark-purple">Manage My Listing:</h2>
-      <h3 class="text-purple-grey">Views:</h3>
-      <h3 class="text-purple-grey">Listed On:</h3>
+      <h3 class="text-purple-grey">
+        Listed On: {{ new Date(post.createdAt).toLocaleDateString("en-NZ") }}
+      </h3>
     </div>
     <div class="object-bottom mt-auto mb-1">
       <router-link :to="{ name: 'PostUpdate', params: { postId: post._id } }">
