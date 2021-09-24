@@ -22,7 +22,7 @@
             accept="image/*"
             class="hidden border-2 lg:m-4 p-4"
             @change="handleFileChange"
-            required
+            
           />
           <div v-if="loading" class="loadingSpinner"></div>
           <button
@@ -57,7 +57,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             />
           </div>
           <div class="form-group my-2">
@@ -77,7 +77,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             />
           </div>
           <div class="form-group">
@@ -97,7 +97,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             >
               <option value="Mens">Mens</option>
               <option value="Womens">Womens</option>
@@ -122,7 +122,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             >
               <option value="New">New</option>
               <option value="Like New">Like New</option>
@@ -148,7 +148,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             />
           </div>
           <div class="form-group">
@@ -168,7 +168,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             >
               <option value="Auckland">Auckland</option>
               <option value="Hamilton">Hamilton</option>
@@ -199,7 +199,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             >
               <option value="Cash">Cash</option>
               <option value="Debit, Credit card">Debit, Credit card</option>
@@ -224,7 +224,7 @@
                 rounded-lg
                 text-gray-700
               "
-              required
+              
             >
               <option value="NZ Post">NZ Post</option>
               <option value="NZ Couriers">NZ Couriers</option>
@@ -250,7 +250,7 @@
             cols="10"
             rows="5"
             placeholder="Please enter a description for this listing. Character limit of 500 characters applies."
-            required
+           
           ></textarea>
         </div>
       </div>
