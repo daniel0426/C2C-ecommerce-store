@@ -139,22 +139,24 @@ app.patch("/posts/:postId", authUser, async (req, res, next) => {
   }
 });
 
-//Delete post - Daniel
-app.delete("/posts/:postId" , authUser, async (req, res, next) => {
-  try{
+//Delete post base code - Daniel, backend protection - Alexis
+app.delete("/posts/:postId", authUser, async (req, res, next) => {
+  try {
     let post = await Post.findOneAndDelete({
-      _id: req.params.postId,  suthor: req.userId,
+      _id: req.params.postId,
+      author: req.userId,
     });
     if (post) {
       res.status(200).json(post);
     } else {
-      res.status(401).json({me3ssahe: "You are not authorised to delete this post." });
+      res
+        .status(401)
+        .json({ message: "You are not authorised to delete this post." });
     }
   } catch (err) {
     next(err);
   }
 });
-
 
 //Account endpoints
 app.get("/account", authUser, async (req, res, next) => {
@@ -286,12 +288,38 @@ app.get("/posts/:postId/comments", async (req, res) => {
 
 //Delete Comments - Alexis
 
-app.delete("/posts/:postId/comments/:commentId", async (req, res) => {
-  const post = await Post.findById(req.params.postId);
-  post.comments.pull(req.params.commentId);
-  const savedPost = await post.save();
-  res.status(200).send(savedPost);
-});
+// app.delete("/posts/:postId/comments/:commentId", async (req, res) => {
+//   const post = await Post.findById(req.params.postId);
+//   post.comments.pull(req.params.commentId);
+//   const savedPost = await post.save();
+//   res.status(200).send(savedPost);
+// });
+
+app.delete(
+  "/posts/:postId/comments/:commentId",
+  authUser,
+  async (req, res, next) => {
+    try {
+      let post = await Post.findOne({
+        _id: req.params.postId,
+        author: req.userId,
+      });
+      if (!post) {
+        res
+          .status(401)
+          .json({ message: "You are not authorised to delete this comment." });
+        return;
+      }
+
+      post.comments.id(req.params.commentId).remove();
+      post.save();
+      console.log(post);
+      res.status(200).json(post);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 //Post Comment - Alexis
 

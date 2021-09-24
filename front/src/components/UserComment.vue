@@ -52,7 +52,7 @@
         {{ new Date(comment.createdAt).toLocaleDateString("en-NZ") }} at
         {{ new Date(comment.createdAt).toLocaleTimeString("en-NZ") }}
       </h3>
-      <div class="flex">
+      <div class="flex" v-if="isAuthor">
         <button
           type="button"
           @click="$emit('delete')"
@@ -96,6 +96,10 @@ export default {
     comment: {
       type: Object,
       default: {},
+    },
+    isAuthor: {
+      type: Boolean,
+      default: false,
     },
   },
 };

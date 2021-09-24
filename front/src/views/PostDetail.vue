@@ -20,7 +20,7 @@
         @add="addToWatchlist"
         class="hidden md:flex"
         :post="post"
-        v-if="user"
+        v-if="user && !isAuthor"
       />
     </div>
     <!-- MANAGE MY LISTING WILL APPEAR/DISAPPEAR BASED ON USER, click funtionality and router still to be written -->
@@ -28,19 +28,24 @@
       class="my-4"
       :postId="post._id"
       :post="post"
-      v-if="isAuthor | true"
+      v-if="isAuthor"
     />
     <div v-if="post" class="md:mt-2 flex flex-col items-center">
       <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         <div class="">
-          <AddToWatchlist @add="addToWatchlist" class="md:hidden" />
+          <AddToWatchlist
+            @add="addToWatchlist"
+            class="md:hidden"
+            v-if="user && !isAuthor"
+          />
           <img
             class="h-96 w-96 mb-6 rounded-xl object-cover shadow-md"
             alt="post image"
             :src="post.imgURL"
           />
+          <SellerTile :author="post.author" />
         </div>
-        <div>
+        <div class="space-y-4">
           <h2 class="text-dark-purple font-semibold text-2xl mb-4">
             {{ post.title }}
           </h2>
@@ -57,7 +62,7 @@
                 })
               }}
             </h3>
-            <h3>Condition:{{ post.condition }}</h3>
+            <h3>Condition: {{ post.condition }}</h3>
             <h3>Size: {{ post.size }}</h3>
             <h3>Location: {{ post.location }}</h3>
           </div>
@@ -65,17 +70,41 @@
             <h3>Payment: {{ post.paymentType }}</h3>
             <h3>Shipping: {{ post.shippingOption }}</h3>
           </div>
-          <h3 class="text-dark-purple font-semibold text-lg my-1">
+          <h3 class="text-dark-purple font-semibold text-lg mb-10">
             Description:
             <h2 class="text-black font-epilogue font-medium">
               {{ post.description }}
             </h2>
           </h3>
+          <div class="flex justify-center my-auto">
+            <button
+              :class="{
+                'bg-gray-400 cursor-default': isAuthor,
+                'bg-dark-purple': !isAuthor,
+              }"
+              class="
+                px-6
+                py-2
+                font-epilogue
+                rounded-lg
+                text-cream text-lg
+                font-medium
+                shadow-xl
+              "
+            >
+              Request to Purchase
+            </button>
+          </div>
         </div>
-        <SellerTile :author="post.author" />
       </div>
     </div>
-    <Commenting class="mb-8" :post="post" @refresh="getPost" v-if="user" />
+    <Commenting
+      class="mb-8"
+      :post="post"
+      @refresh="getPost"
+      v-if="user"
+      :isAuthor="isAuthor"
+    />
     <div v-else>
       <h2
         class="
