@@ -11,8 +11,8 @@ Styling with Tailwind.css
 3. [Issue](#3--Issue)
 4. [Things to Improvement](#6--Things-to-Improvement)
 
-## Quick Start
-### Clone this project first 
+## Installation of the project
+Execute the following command to execute project
 ```bash
 # Install dependencies
 cd front
