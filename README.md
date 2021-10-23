@@ -30,7 +30,7 @@ cd front
 npm run serve
 
 # Build for production (Will build into server/public, ready for deployment)
-cd client
+cd front
 npm run build
 ```
 
