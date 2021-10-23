@@ -12,7 +12,7 @@ Styling with Tailwind.css
 4. [Things to Improvement](#6--Things-to-Improvement)
 
 ## Quick Start
-
+### Clone this project first 
 ```bash
 # Install dependencies
 cd front
